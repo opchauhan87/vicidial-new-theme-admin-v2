@@ -1,0 +1,2951 @@
+/*
+ * HNC Smart CRM - Modern Agent Panel
+ *
+ * Development theme only.
+ * Existing VICIdial call logic is untouched.
+ */
+
+/* =========================================================
+   HNC AGENT THEME FOUNDATION
+   ========================================================= */
+
+:root {
+    --hnc-green-dark: #164b35;
+    --hnc-green: #167a50;
+    --hnc-green-soft: #e7f7ed;
+    --hnc-green-light: #f4faf6;
+
+    --hnc-text: #355944;
+    --hnc-text-muted: #719083;
+
+    --hnc-border: #dce9df;
+    --hnc-border-soft: #e8f1eb;
+
+    --hnc-white: #ffffff;
+
+    --hnc-radius: 10px;
+    --hnc-radius-small: 7px;
+
+    --hnc-shadow: 0 2px 10px rgba(25, 80, 55, 0.08);
+}
+
+/* Basic page foundation */
+
+html,
+body {
+    background: #f5faf7 !important;
+    color: var(--hnc-text) !important;
+}
+
+/* Modern typography */
+
+body,
+button,
+input,
+select,
+textarea {
+    font-family: "Montserrat", Arial, sans-serif !important;
+}
+
+/* Links */
+
+a {
+    color: var(--hnc-green) !important;
+}
+
+a:hover {
+    color: var(--hnc-green-dark) !important;
+}
+
+/* =========================================================
+   COMMON MODERN CARD
+   ========================================================= */
+
+.hnc-agent-card {
+    background: var(--hnc-white);
+    border: 1px solid var(--hnc-border);
+    border-radius: var(--hnc-radius);
+    box-shadow: var(--hnc-shadow);
+}
+
+/* =========================================================
+   FORM CONTROLS
+   ========================================================= */
+
+input,
+select,
+textarea {
+    border-color: var(--hnc-border) !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #9bc9ae !important;
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(22, 122, 80, 0.08) !important;
+}
+
+/* =========================================================
+   BUTTON FOUNDATION
+   ========================================================= */
+
+button,
+input[type="button"],
+input[type="submit"] {
+    border-radius: var(--hnc-radius-small);
+}
+
+/* =========================================================
+   SAFE DEVELOPMENT MARKER
+   ========================================================= */
+
+body::after {
+    content: "HNC AGENT MODERN";
+    position: fixed;
+    bottom: 6px;
+    right: 8px;
+    z-index: 99999;
+
+    padding: 3px 7px;
+    border-radius: 5px;
+
+    background: rgba(22, 122, 80, 0.08);
+    color: rgba(22, 122, 80, 0.55);
+
+    font-size: 8px;
+    font-weight: 600;
+    pointer-events: none;
+}
+
+/* =========================================================
+   HNC AGENT MODERN - HEADER
+   Phase 1 - Visual only
+   Existing VICIdial JS/functions untouched
+   ========================================================= */
+
+.navbar {
+    height: 64px !important;
+    min-height: 64px !important;
+    padding: 0 18px !important;
+
+    background: #ffffff !important;
+    border: 0 !important;
+    border-bottom: 1px solid var(--hnc-border) !important;
+
+    box-shadow: 0 2px 10px rgba(25, 80, 55, 0.06) !important;
+}
+
+.navbar .container-fluid {
+    height: 64px !important;
+    padding: 0 !important;
+}
+
+#main_header1 {
+    height: 64px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* Logo */
+
+.navbar-header.header-height {
+    height: 64px !important;
+    display: flex !important;
+    align-items: center !important;
+    min-width: 180px !important;
+}
+
+.navbar-header .navbar-brand {
+    padding: 8px 15px 8px 0 !important;
+    height: 64px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.navbar-header .navbar-brand img {
+    max-height: 42px !important;
+    width: auto !important;
+}
+
+/* Main status area */
+
+.header-ul {
+    height: 64px !important;
+    margin: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+
+    flex: 1 !important;
+}
+
+.header-ul > li {
+    position: static !important;
+    left: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Queue / callback status */
+
+.header-ul > li.color-blue {
+    padding: 7px 11px !important;
+
+    background: var(--hnc-green-light) !important;
+    border: 1px solid var(--hnc-border-soft) !important;
+    border-radius: var(--hnc-radius-small) !important;
+
+    color: var(--hnc-text) !important;
+
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    white-space: nowrap !important;
+}
+
+.header-ul .label {
+    margin-left: 4px !important;
+
+    background: var(--hnc-green-soft) !important;
+    color: var(--hnc-green-dark) !important;
+
+    border: 1px solid var(--hnc-border) !important;
+    border-radius: 12px !important;
+
+    font-size: 10px !important;
+    padding: 3px 7px !important;
+}
+
+/* Callback */
+
+#CallbacksButtons {
+    display: inline-block !important;
+
+    background: var(--hnc-green-soft) !important;
+    color: var(--hnc-green-dark) !important;
+
+    border: 1px solid var(--hnc-border) !important;
+    border-radius: 8px !important;
+
+    padding: 7px 10px !important;
+}
+
+#CBstatusSpan {
+    font-size: 10px !important;
+}
+
+/* Live call indicator */
+
+.header-ul img[name="livecall"] {
+    height: 30px !important;
+    width: auto !important;
+}
+
+/* Right menu */
+
+.right-menu {
+    height: 64px !important;
+    margin: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+}
+
+.right-menu > li,
+.right-menu > span {
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+}
+
+/* Dial / Call log */
+
+.right-menu img {
+    object-fit: contain !important;
+    transition: transform .15s ease, opacity .15s ease !important;
+}
+
+.right-menu a:hover img {
+    transform: translateY(-1px) !important;
+    opacity: .82 !important;
+}
+
+/* Power */
+
+.right-menu .fa-power-off {
+    color: var(--hnc-green) !important;
+    font-size: 23px !important;
+}
+
+/* WhatsApp */
+
+#whatsapp_header_btn {
+    width: 38px !important;
+    height: 38px !important;
+
+    padding: 5px !important;
+    border-radius: 50% !important;
+
+    border: 1px solid #ccebd8 !important;
+    box-shadow: 0 2px 7px rgba(25, 80, 55, .10) !important;
+}
+
+#whatsapp_header_btn img {
+    width: 25px !important;
+    height: 25px !important;
+}
+
+/* WhatsApp modal */
+
+#whatsapp_modal {
+    border: 1px solid var(--hnc-border) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 12px 35px rgba(25, 80, 55, .18) !important;
+}
+
+#whatsapp_box {
+    width: 100% !important;
+    height: 100% !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+}
+
+#whatsapp_header {
+    background: var(--hnc-green) !important;
+    padding: 11px 13px !important;
+}
+
+/* Header menu */
+
+.right-menu .dropdown-menu {
+    border: 1px solid var(--hnc-border) !important;
+    border-radius: 9px !important;
+
+    box-shadow: 0 8px 25px rgba(25, 80, 55, .12) !important;
+}
+
+.right-menu .dropdown-menu li a {
+    color: var(--hnc-text) !important;
+    font-size: 11px !important;
+    padding: 8px 12px !important;
+}
+
+.right-menu .dropdown-menu li a:hover {
+    background: var(--hnc-green-light) !important;
+    color: var(--hnc-green-dark) !important;
+}
+
+/* Hide old absolute positioning */
+
+#SecondSspan,
+#ParkCounterSpan {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        padding: 0 8px !important;
+    }
+
+    .navbar-header.header-height {
+        min-width: 120px !important;
+    }
+
+    .navbar-header .navbar-brand img {
+        max-height: 34px !important;
+    }
+
+    .header-ul {
+        gap: 4px !important;
+        overflow: hidden !important;
+    }
+
+    .header-ul > li.color-blue {
+        padding: 5px 7px !important;
+        font-size: 9px !important;
+    }
+
+    .right-menu {
+        gap: 2px !important;
+    }
+}
+
+
+/* =========================================================
+   HNC AGENT MODERN - CUSTOMER PANEL
+   CSS ONLY
+   Existing VICIdial IDs/classes preserved
+   ========================================================= */
+
+/* Main customer workspace */
+#MainPanelCustInfo {
+    background: #f5faf7 !important;
+}
+
+#MainPanelCustInfo #pcont {
+    padding: 0 !important;
+}
+
+#MainPanelCustInfo .cl-mcont {
+    padding: 10px 12px 18px !important;
+}
+
+/* ---------------------------------------------------------
+   CUSTOMER / SCRIPT TABS
+   --------------------------------------------------------- */
+
+#MainPanelCustInfo .nav-pills {
+    margin: 0 0 10px !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    border: 1px solid var(--hnc-border) !important;
+    border-radius: var(--hnc-radius) !important;
+    overflow: hidden;
+    box-shadow: var(--hnc-shadow);
+}
+
+#MainPanelCustInfo .nav-pills > li {
+    margin: 0 !important;
+}
+
+#MainPanelCustInfo .nav-pills > li > a {
+    margin: 0 !important;
+    padding: 13px 20px !important;
+    border-radius: 0 !important;
+    color: var(--hnc-green) !important;
+    background: #ffffff !important;
+    font-weight: 600 !important;
+    border: 0 !important;
+}
+
+#MainPanelCustInfo .nav-pills > li.active > a,
+#MainPanelCustInfo .nav-pills > li.active > a:hover,
+#MainPanelCustInfo .nav-pills > li.active > a:focus {
+    background: var(--hnc-green-dark) !important;
+    color: #ffffff !important;
+}
+
+/* ---------------------------------------------------------
+   CUSTOMER CONTENT AREA
+   --------------------------------------------------------- */
+
+#MainPanelCustInfo #main_section1 {
+    background: transparent !important;
+}
+
+#MainPanelCustInfo #main_section2 {
+    background: transparent !important;
+}
+
+#MainPanelCustInfo .content {
+    padding: 0 !important;
+}
+
+/* Main scrolling customer form */
+#MainPanelCustInfo .content > .col-md-12 > .col-sm-12.bg-gray {
+    background: #ffffff !important;
+    border: 1px solid var(--hnc-border) !important;
+    border-radius: var(--hnc-radius) !important;
+    padding: 18px 20px 28px !important;
+    box-shadow: var(--hnc-shadow);
+}
+
+/* ---------------------------------------------------------
+   SECTION HEADINGS
+   --------------------------------------------------------- */
+
+#MainPanelCustInfo .bg-gray h4 {
+    margin: 4px 0 8px 0 !important;
+    padding: 0 !important;
+    color: var(--hnc-green-dark) !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+}
+
+#MainPanelCustInfo .bg-gray hr.colorgraph {
+    margin: 0 0 14px !important;
+    height: 1px !important;
+    border: 0 !important;
+    background: var(--hnc-border) !important;
+}
+
+/* ---------------------------------------------------------
+   FORM GROUPS
+   --------------------------------------------------------- */
+
+#MainPanelCustInfo .bg-gray .form-group {
+    margin-bottom: 14px !important;
+}
+
+#MainPanelCustInfo .bg-gray label {
+    display: block;
+    margin-bottom: 6px !important;
+    color: var(--hnc-text-muted) !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+}
+
+/* ---------------------------------------------------------
+   CUSTOMER INPUTS
+   Existing IDs/names/classes untouched
+   --------------------------------------------------------- */
+
+#MainPanelCustInfo input.customer-page,
+#MainPanelCustInfo select.customer-page,
+#MainPanelCustInfo textarea.customer-page {
+    width: 100% !important;
+    min-height: 40px;
+    padding: 8px 11px !important;
+
+    background: #ffffff !important;
+    color: var(--hnc-text) !important;
+
+    border: 1px solid var(--hnc-border) !important;
+    border-radius: 8px !important;
+
+    box-shadow: none !important;
+    transition: border-color .15s ease,
+                box-shadow .15s ease,
+                background .15s ease !important;
+}
+
+/* Focus */
+#MainPanelCustInfo input.customer-page:focus,
+#MainPanelCustInfo select.customer-page:focus,
+#MainPanelCustInfo textarea.customer-page:focus {
+    border-color: var(--hnc-green) !important;
+    background: #ffffff !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(22, 122, 80, 0.08) !important;
+}
+
+/* Disabled / readonly */
+#MainPanelCustInfo input.customer-page:disabled,
+#MainPanelCustInfo select.customer-page:disabled,
+#MainPanelCustInfo textarea.customer-page:disabled {
+    background: #f3f7f4 !important;
+}
+
+/* ---------------------------------------------------------
+   ROW SPACING
+   --------------------------------------------------------- */
+
+#MainPanelCustInfo .bg-gray > .row {
+    margin-left: -8px !important;
+    margin-right: -8px !important;
+}
+
+#MainPanelCustInfo .bg-gray > .row > [class*="col-md-"] {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+}
+
+/* ---------------------------------------------------------
+   CONTACT / NOTES
+   --------------------------------------------------------- */
+
+#MainPanelCustInfo textarea.customer-page {
+    min-height: 70px;
+    resize: vertical;
+}
+
+/* ---------------------------------------------------------
+   REMOVE OLD VISUAL NOISE
+   --------------------------------------------------------- */
+
+#MainPanelCustInfo .colorgraph {
+    border-radius: 2px;
+}
+
+/* ---------------------------------------------------------
+   SCROLLBAR
+   --------------------------------------------------------- */
+
+#MainPanelCustInfo .bg-gray::-webkit-scrollbar {
+    width: 7px;
+}
+
+#MainPanelCustInfo .bg-gray::-webkit-scrollbar-track {
+    background: #f1f6f3;
+}
+
+#MainPanelCustInfo .bg-gray::-webkit-scrollbar-thumb {
+    background: #c6dacf;
+    border-radius: 10px;
+}
+
+#MainPanelCustInfo .bg-gray::-webkit-scrollbar-thumb:hover {
+    background: #9fbea9;
+}
+
+
+/* =========================================================
+   HNC AGENT MODERN - CONTACT DETAILS
+   CSS ONLY - VICIdial logic untouched
+   ========================================================= */
+
+/* Section heading */
+#MainPanelCustInfo .bg-gray > .row > h4 {
+    margin: 6px 0 8px 0 !important;
+    padding: 0 !important;
+
+    color: var(--hnc-green-dark) !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+}
+
+#MainPanelCustInfo .bg-gray > .row > h4 + hr.colorgraph {
+    margin: 0 0 14px 0 !important;
+    background: var(--hnc-border) !important;
+}
+
+/* Contact field columns */
+#MainPanelCustInfo #phone_code,
+#MainPanelCustInfo #alt_phone,
+#MainPanelCustInfo #security_phrase,
+#MainPanelCustInfo #email,
+#MainPanelCustInfo #phone_number {
+    min-height: 40px !important;
+}
+
+/* Contact field labels */
+#MainPanelCustInfo #phone_code,
+#MainPanelCustInfo #alt_phone,
+#MainPanelCustInfo #security_phrase,
+#MainPanelCustInfo #email,
+#MainPanelCustInfo #phone_number {
+    box-sizing: border-box !important;
+}
+
+/* History button */
+#MainPanelCustInfo #ViewCommentButton,
+#MainPanelCustInfo #OtherViewCommentButton {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    min-height: 28px !important;
+    padding: 4px 10px !important;
+
+    margin-left: 6px !important;
+
+    border: 1px solid var(--hnc-border) !important;
+    border-radius: 6px !important;
+
+    background: var(--hnc-green-soft) !important;
+    color: var(--hnc-green-dark) !important;
+
+    font-size: 11px !important;
+    font-weight: 600 !important;
+
+    cursor: pointer !important;
+}
+
+#MainPanelCustInfo #ViewCommentButton:hover,
+#MainPanelCustInfo #OtherViewCommentButton:hover {
+    background: #d8f0e1 !important;
+    border-color: #b9d8c5 !important;
+}
+
+/* Comments area */
+#MainPanelCustInfo #comments {
+    min-height: 44px !important;
+    line-height: 1.45 !important;
+}
+
+/* Give contact section a little breathing room */
+#MainPanelCustInfo #phone_number {
+    margin-bottom: 2px !important;
+}
+
+/* Keep contact rows aligned */
+#MainPanelCustInfo .bg-gray .row > .col-md-3 {
+    vertical-align: top;
+}
+
+/* =========================================================
+   CONTACT DETAILS - DESKTOP
+   ========================================================= */
+
+@media (min-width: 992px) {
+
+    #MainPanelCustInfo #email {
+        width: 100% !important;
+    }
+
+    #MainPanelCustInfo #phone_number {
+        width: 100% !important;
+    }
+
+    #MainPanelCustInfo #comments {
+        width: 100% !important;
+    }
+}
+
+/* =========================================================
+   CONTACT DETAILS - MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+    #MainPanelCustInfo .bg-gray .row > .col-md-3,
+    #MainPanelCustInfo .bg-gray .row > .col-md-12 {
+        width: 100% !important;
+    }
+
+}
+
+
+/* =========================================================
+   HNC AGENT MODERN - SOFTPHONE AUTO HIDE
+   ========================================================= */
+
+#softphonePanel {
+    transition: width 0.25s ease,
+                min-width 0.25s ease,
+                opacity 0.25s ease,
+                transform 0.25s ease !important;
+    position: relative !important;
+}
+
+/* Collapsed state */
+#softphonePanel.hnc-softphone-hidden {
+    width: 0 !important;
+    min-width: 0 !important;
+    max-width: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+}
+
+/* Hide actual softphone contents */
+#softphonePanel.hnc-softphone-hidden #left_sidebar {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* Floating open button */
+#hncSoftphoneToggle {
+    position: fixed;
+    right: 14px;
+    top: 250px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: #167a50;
+    color: #ffffff;
+    font-size: 22px;
+    line-height: 48px;
+    text-align: center;
+    cursor: pointer;
+    z-index: 99999;
+    box-shadow: 0 4px 14px rgba(0,0,0,.18);
+    transition: all .2s ease;
+}
+
+#hncSoftphoneToggle:hover {
+    transform: scale(1.06);
+}
+
+/* When phone is open, keep toggle attached near panel */
+#softphonePanel:not(.hnc-softphone-hidden) + #hncSoftphoneToggle {
+    background: #1b4e80;
+}
+
+/* Desktop only */
+@media (min-width: 768px) {
+
+    #softphonePanel.hnc-softphone-hidden {
+        flex: 0 0 0 !important;
+    }
+
+}
+
+
+/* =========================================================
+   HNC AGENT MODERN - SOFTPHONE DRAWER
+   Phase: Safe Overlay
+   Existing VICIdial call logic untouched
+   ========================================================= */
+
+#softphonePanel {
+    position: fixed !important;
+
+    top: 82px !important;
+    right: 0 !important;
+    bottom: 35px !important;
+
+    width: 360px !important;
+    max-width: 360px !important;
+
+    z-index: 9900 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    background: #ffffff !important;
+
+    border-left: 1px solid var(--hnc-border) !important;
+
+    box-shadow: -6px 0 22px rgba(25, 80, 55, 0.12) !important;
+
+    transition:
+        transform .28s ease,
+        opacity .28s ease !important;
+}
+
+/* Softphone internal area */
+#softphonePanel #left_sidebar {
+    width: 100% !important;
+    height: 100% !important;
+
+    overflow-y: auto !important;
+}
+
+/* Hidden state */
+#softphonePanel.hnc-softphone-hidden {
+    transform: translateX(100%) !important;
+    opacity: 0 !important;
+
+    pointer-events: none !important;
+}
+
+/* =========================================================
+   SOFTPHONE TOGGLE
+   ========================================================= */
+
+#hncSoftphoneToggle {
+    position: fixed !important;
+
+    right: 14px !important;
+    top: 220px !important;
+
+    width: 46px !important;
+    height: 46px !important;
+
+    padding: 0 !important;
+
+    border: 0 !important;
+    border-radius: 50% !important;
+
+    background: var(--hnc-green) !important;
+    color: #ffffff !important;
+
+    font-size: 20px !important;
+    line-height: 46px !important;
+    text-align: center !important;
+
+    cursor: pointer !important;
+
+    z-index: 99999 !important;
+
+    box-shadow: 0 4px 14px rgba(25, 80, 55, .20) !important;
+
+    transition: transform .18s ease,
+                right .28s ease !important;
+}
+
+#hncSoftphoneToggle:hover {
+    transform: scale(1.06) !important;
+}
+
+/* When phone is open */
+#softphonePanel:not(.hnc-softphone-hidden)
+~ #hncSoftphoneToggle {
+    right: 374px !important;
+}
+
+/* Softphone header area should remain visible */
+#softphonePanel .page-wrap {
+    height: 100% !important;
+}
+
+/* Scrollbar */
+#softphonePanel #left_sidebar::-webkit-scrollbar {
+    width: 6px !important;
+}
+
+#softphonePanel #left_sidebar::-webkit-scrollbar-track {
+    background: #f3f8f5 !important;
+}
+
+#softphonePanel #left_sidebar::-webkit-scrollbar-thumb {
+    background: #c4d9cb !important;
+    border-radius: 6px !important;
+}
+
+@media (max-width: 767px) {
+
+    #softphonePanel {
+        top: 60px !important;
+        bottom: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    #softphonePanel.hnc-softphone-hidden {
+        transform: translateX(100%) !important;
+    }
+
+    #hncSoftphoneToggle {
+        right: 12px !important;
+        top: 180px !important;
+    }
+
+}
+
+
+/* =========================================================
+   HNC AGENT MODERN - LOGOUT SCREEN TOP LAYER
+   ========================================================= */
+
+#LogouTBox {
+    z-index: 1000000 !important;
+}
+
+#LogouTBox table {
+    position: relative !important;
+    z-index: 1000001 !important;
+}
+
+
+/* =========================================================
+   HNC SOFTPHONE - COMPACT MODERN UI
+   CSS ONLY - VICIdial JS/call logic untouched
+   ========================================================= */
+
+#softphonePanel {
+    width: 330px !important;
+    max-width: 330px !important;
+    overflow: hidden !important;
+}
+
+#softphonePanel #left_sidebar {
+    padding: 12px !important;
+    box-sizing: border-box !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+}
+
+/* Dial number input */
+#softphonePanel .input-group {
+    width: 100% !important;
+    margin-bottom: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+#softphonePanel .manual-dial-icon {
+    width: 44px !important;
+    min-width: 44px !important;
+    height: 42px !important;
+    padding: 7px !important;
+    text-align: center !important;
+}
+
+#softphonePanel .manual-dial-icon img {
+    width: 22px !important;
+    height: 22px !important;
+    object-fit: contain !important;
+}
+
+#softphonePanel #MDPhonENumbeR {
+    height: 42px !important;
+    font-size: 17px !important;
+    font-weight: 500 !important;
+    padding: 8px 12px !important;
+    box-sizing: border-box !important;
+}
+
+/* =========================================================
+   DIALPAD
+   ========================================================= */
+
+#softphonePanel .keypad {
+    width: 100% !important;
+    max-width: 270px !important;
+    margin: 0 auto 14px auto !important;
+    text-align: center !important;
+}
+
+#softphonePanel .keypad input[type="button"] {
+    width: 70px !important;
+    height: 42px !important;
+    margin: 2px !important;
+    padding: 0 !important;
+
+    border: 1px solid #d8e5dc !important;
+    border-radius: 8px !important;
+
+    background: #ffffff !important;
+    color: #214d36 !important;
+
+    font-size: 17px !important;
+    font-weight: 600 !important;
+
+    box-shadow: 0 1px 4px rgba(25,80,55,.08) !important;
+    transition: all .15s ease !important;
+}
+
+#softphonePanel .keypad input[type="button"]:hover {
+    background: #f0f8f3 !important;
+    transform: translateY(-1px) !important;
+}
+
+#softphonePanel .keypad input[type="button"]:active {
+    transform: scale(.96) !important;
+}
+
+/* Backspace / clear buttons */
+#softphonePanel .keypad > span {
+    height: 38px !important;
+    margin: 2px !important;
+    background: #f5f8f6 !important;
+    border: 1px solid #d8e5dc !important;
+    border-radius: 8px !important;
+}
+
+#softphonePanel .keypad > span img {
+    width: 18px !important;
+    height: 18px !important;
+    object-fit: contain !important;
+}
+
+/* =========================================================
+   CALL ACTION ROW
+   ========================================================= */
+
+#softphonePanel .callcenter-theme.pb-10 {
+    gap: 8px !important;
+    padding: 4px 0 10px !important;
+}
+
+#softphonePanel .callcenter-theme.pb-10 > div {
+    flex: 0 0 auto !important;
+}
+
+/* Main action buttons */
+#softphonePanel .btn-50 {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    padding: 6px !important;
+    border-radius: 9px !important;
+}
+
+#softphonePanel .btn-50 img {
+    max-width: 27px !important;
+    max-height: 27px !important;
+    object-fit: contain !important;
+}
+
+/* Dial next button */
+#softphonePanel .btn-100 {
+    width: 58px !important;
+    height: 44px !important;
+    min-width: 58px !important;
+    padding: 5px !important;
+    border-radius: 9px !important;
+}
+
+#softphonePanel .btn-100 img {
+    max-width: 38px !important;
+    max-height: 30px !important;
+    object-fit: contain !important;
+}
+
+/* =========================================================
+   VOLUME / RECORDING CONTROLS
+   ========================================================= */
+
+#softphonePanel #VolumeControlSpan {
+    gap: 7px !important;
+    justify-content: center !important;
+    padding: 5px 0 !important;
+}
+
+#softphonePanel .btn-40 {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    padding: 5px !important;
+    border-radius: 8px !important;
+}
+
+#softphonePanel .btn-40 img {
+    max-width: 23px !important;
+    max-height: 23px !important;
+}
+
+/* =========================================================
+   DTMF
+   ========================================================= */
+
+#softphonePanel #SendDTMFdiv {
+    margin: 10px 0 !important;
+}
+
+#softphonePanel #SendDTMF {
+    gap: 6px !important;
+    align-items: center !important;
+}
+
+#softphonePanel #SendDTMF input {
+    height: 36px !important;
+    padding: 6px 9px !important;
+    font-size: 14px !important;
+}
+
+#softphonePanel #SendDTMF button {
+    height: 36px !important;
+    margin-left: 0 !important;
+    padding: 5px 10px !important;
+    white-space: nowrap !important;
+}
+
+/* =========================================================
+   SECONDARY SOFTPHONE BUTTONS
+   ========================================================= */
+
+#softphonePanel .dialpad-btns {
+    gap: 7px !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+}
+
+#softphonePanel .btn-svg {
+    min-height: 38px !important;
+    padding: 5px 8px !important;
+    border-radius: 8px !important;
+}
+
+#softphonePanel .btn-svg img {
+    max-width: 25px !important;
+    max-height: 25px !important;
+}
+
+/* Full-width action buttons */
+#softphonePanel .w-100 {
+    max-width: 100% !important;
+}
+
+/* Compact vertical spacing */
+#softphonePanel .mt-2 {
+    margin-top: 6px !important;
+}
+
+#softphonePanel .pb-10 {
+    padding-bottom: 6px !important;
+}
+
+/* =========================================================
+   WEBPHONE AREA
+   ========================================================= */
+
+#softphonePanel #webphoneLinkSpan {
+    display: block !important;
+    margin-bottom: 8px !important;
+}
+
+#softphonePanel #webphoneLink a {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 7px 10px !important;
+    font-size: 13px !important;
+}
+
+/* Keep existing webphone behavior intact */
+#softphonePanel #webphoneSpan {
+    max-width: 100% !important;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+    #softphonePanel {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    #softphonePanel .keypad {
+        max-width: 280px !important;
+    }
+
+    #softphonePanel .keypad input[type="button"] {
+        width: 72px !important;
+        height: 44px !important;
+    }
+
+}
+
+
+/* =========================================================
+   HNC AGENT MODERN - LEFT STATS SIDEBAR
+   Compact modern stats rail
+   ========================================================= */
+
+.sidebar-cards {
+    width: 100% !important;
+    height: 100% !important;
+
+    padding: 14px 8px !important;
+    box-sizing: border-box !important;
+
+    background: #f4faf6 !important;
+    border-right: 1px solid #dcebe1 !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+
+    overflow: hidden !important;
+}
+
+/* Individual statistic card */
+.sidebar-cards .cardsDiv {
+    width: 100% !important;
+    min-height: 82px !important;
+
+    margin: 0 0 8px 0 !important;
+    padding: 9px 5px !important;
+
+    box-sizing: border-box !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #dce9df !important;
+    border-radius: 10px !important;
+
+    box-shadow: 0 2px 7px rgba(25, 80, 55, 0.06) !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+    transition: all .15s ease !important;
+}
+
+/* Hover */
+.sidebar-cards .cardsDiv:hover {
+    border-color: #b9d8c4 !important;
+    box-shadow: 0 3px 10px rgba(25, 80, 55, 0.10) !important;
+}
+
+/* Statistic title */
+.sidebar-cards .cardsText {
+    margin: 0 0 6px 0 !important;
+
+    color: #24563e !important;
+
+    font-size: 12px !important;
+    line-height: 15px !important;
+    font-weight: 600 !important;
+
+    text-align: center !important;
+}
+
+/* Statistic value */
+.sidebar-cards .label-cards {
+    display: inline-flex !important;
+
+    min-width: 38px !important;
+    min-height: 28px !important;
+
+    padding: 4px 8px !important;
+
+    box-sizing: border-box !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    background: #edf7f1 !important;
+    color: #175b3c !important;
+
+    border: 1px solid #d3e9da !important;
+    border-radius: 7px !important;
+
+    font-size: 14px !important;
+    font-weight: 700 !important;
+
+    line-height: 20px !important;
+}
+
+/* Talk time slightly wider */
+.sidebar-cards #avg_talktime {
+    min-width: 58px !important;
+}
+
+/* Percentage */
+.sidebar-cards #closer_rates {
+    min-width: 48px !important;
+}
+
+/* Keep the outer Bootstrap column clean */
+.container-fluid .row.content > .sidenav {
+    background: #f4faf6 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* =========================================================
+   DESKTOP - slightly tighter
+   ========================================================= */
+
+@media (min-width: 768px) {
+
+    .sidebar-cards .cardsDiv {
+        min-height: 78px !important;
+        margin-bottom: 7px !important;
+    }
+
+    .sidebar-cards .cardsText {
+        font-size: 11.5px !important;
+        margin-bottom: 5px !important;
+    }
+
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+    .sidebar-cards {
+        padding: 8px 5px !important;
+    }
+
+    .sidebar-cards .cardsDiv {
+        min-height: 70px !important;
+        margin-bottom: 6px !important;
+    }
+
+    .sidebar-cards .cardsText {
+        font-size: 11px !important;
+    }
+
+}
+
+
+/* =========================================================
+   HNC AGENT MODERN - DRAGGABLE WHATSAPP BUTTON
+   ========================================================= */
+
+#whatsapp_header_btn {
+    width: 46px !important;
+    height: 46px !important;
+
+    padding: 6px !important;
+
+    border: 0 !important;
+    border-radius: 50% !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    background: #25D366 !important;
+
+    box-shadow: 0 4px 14px rgba(25,80,55,.18) !important;
+
+    cursor: grab !important;
+
+    transition:
+        transform .15s ease,
+        box-shadow .15s ease !important;
+}
+
+#whatsapp_header_btn:active {
+    cursor: grabbing !important;
+}
+
+#whatsapp_header_btn:hover {
+    transform: scale(1.06) !important;
+    box-shadow: 0 6px 18px rgba(25,80,55,.25) !important;
+}
+
+#whatsapp_header_btn img {
+    width: 30px !important;
+    height: 30px !important;
+
+    pointer-events: none !important;
+    user-select: none !important;
+}
+
+
+/* =========================================================
+   HNC AGENT MODERN - SOFTPHONE VISUAL HIERARCHY
+   CSS ONLY - VICIdial logic untouched
+   ========================================================= */
+
+/* Softphone inner canvas */
+#softphonePanel #left_sidebar {
+    background: #f8fbf9 !important;
+}
+
+/* LIVE / status heading */
+#softphonePanel #left_sidebar h3 {
+    margin: 0 0 8px 0 !important;
+    padding: 7px 10px !important;
+
+    background: #eaf6ee !important;
+    border: 1px solid #d3e8da !important;
+    border-radius: 8px !important;
+
+    color: #1d6040 !important;
+
+    font-size: 12px !important;
+    line-height: 18px !important;
+    font-weight: 700 !important;
+
+    text-align: center !important;
+}
+
+#softphonePanel #status {
+    color: #1d6040 !important;
+}
+
+/* WebPhone View */
+#softphonePanel #webphoneLink a {
+    background: #ffffff !important;
+    border: 1px solid #d7e7dc !important;
+    color: #286044 !important;
+
+    border-radius: 8px !important;
+
+    font-size: 12px !important;
+    font-weight: 600 !important;
+
+    box-shadow: 0 1px 4px rgba(25,80,55,.05) !important;
+}
+
+/* Number input card */
+#softphonePanel #right-dialpad .input-group {
+    padding: 0 !important;
+}
+
+#softphonePanel #right-dialpad .manual-dial-icon {
+    background: #eaf6ee !important;
+    border: 1px solid #d2e7d9 !important;
+    border-right: 0 !important;
+
+    border-radius: 9px 0 0 9px !important;
+}
+
+#softphonePanel #right-dialpad #MDPhonENumbeR {
+    border: 1px solid #d2e7d9 !important;
+    border-left: 0 !important;
+
+    background: #ffffff !important;
+    color: #234d36 !important;
+
+    border-radius: 0 9px 9px 0 !important;
+
+    box-shadow: none !important;
+}
+
+/* Dialpad grid */
+#softphonePanel .keypad {
+    display: grid !important;
+
+    grid-template-columns: repeat(3, 1fr) !important;
+    grid-template-rows: repeat(4, 42px) 38px !important;
+
+    gap: 5px !important;
+
+    width: 100% !important;
+    max-width: 250px !important;
+
+    margin: 0 auto 10px auto !important;
+}
+
+/* Remove BR layout effect */
+#softphonePanel .keypad br {
+    display: none !important;
+}
+
+/* Dialpad buttons */
+#softphonePanel .keypad input[type="button"] {
+    width: 100% !important;
+    height: 42px !important;
+
+    margin: 0 !important;
+
+    border: 1px solid #d7e6dc !important;
+    border-radius: 8px !important;
+
+    background: #ffffff !important;
+    color: #24553d !important;
+
+    font-size: 16px !important;
+    font-weight: 600 !important;
+
+    box-shadow: 0 1px 3px rgba(25,80,55,.05) !important;
+}
+
+/* Clear / delete */
+#softphonePanel .keypad > span {
+    width: auto !important;
+    height: 38px !important;
+
+    margin: 0 !important;
+
+    border: 1px solid #d7e6dc !important;
+    border-radius: 8px !important;
+
+    background: #f1f7f3 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Make clear/delete occupy bottom half each */
+#softphonePanel .keypad > span:nth-last-child(2) {
+    grid-column: 1 / 3 !important;
+}
+
+#softphonePanel .keypad > span:last-child {
+    grid-column: 3 / 4 !important;
+}
+
+/* Main call controls */
+#softphonePanel .callcenter-theme.pb-10 {
+    padding: 7px 4px !important;
+    margin: 0 !important;
+
+    border-top: 1px solid #e3eee7 !important;
+    border-bottom: 1px solid #e3eee7 !important;
+
+    background: #ffffff !important;
+
+    border-radius: 9px !important;
+
+    gap: 7px !important;
+}
+
+#softphonePanel .callcenter-theme.pb-10 .btn-50,
+#softphonePanel .callcenter-theme.pb-10 .btn-100 {
+    box-shadow: 0 2px 6px rgba(25,80,55,.10) !important;
+}
+
+/* Preview / options rows */
+#softphonePanel #DiaLLeaDPrevieW,
+#softphonePanel #DiaLDiaLAltPhonE,
+#softphonePanel #NexTCalLPausE {
+    display: block !important;
+
+    margin: 5px 0 !important;
+    padding: 6px 9px !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #e0ebe4 !important;
+    border-radius: 7px !important;
+
+    color: #315a43 !important;
+
+    font-size: 11px !important;
+}
+
+/* Labels inside options */
+#softphonePanel #DiaLLeaDPrevieW font,
+#softphonePanel #DiaLDiaLAltPhonE font {
+    color: #315a43 !important;
+    font-size: 11px !important;
+}
+
+/* Next Call Pause link */
+#softphonePanel #NexTCalLPausE a {
+    color: #23704a !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+}
+
+/* Volume controls */
+#softphonePanel #VolumeControlSpan {
+    padding: 7px 5px !important;
+    margin-top: 7px !important;
+
+    background: #ffffff !important;
+    border: 1px solid #e0ebe4 !important;
+    border-radius: 9px !important;
+
+    justify-content: center !important;
+    gap: 7px !important;
+}
+
+#softphonePanel #VolumeControlSpan .btn-40 {
+    background: #f3f8f5 !important;
+    border: 1px solid #d8e7dd !important;
+}
+
+/* DTMF */
+#softphonePanel #SendDTMFdiv {
+    margin: 8px 0 !important;
+    padding: 7px !important;
+
+    background: #ffffff !important;
+    border: 1px solid #e0ebe4 !important;
+    border-radius: 9px !important;
+}
+
+#softphonePanel #SendDTMF {
+    gap: 6px !important;
+}
+
+#softphonePanel #SendDTMF input {
+    min-width: 0 !important;
+
+    border: 1px solid #d5e5db !important;
+    background: #f9fcfa !important;
+
+    border-radius: 7px !important;
+}
+
+#softphonePanel #SendDTMF button {
+    margin-left: 0 !important;
+
+    background: #eaf6ee !important;
+    border: 1px solid #d1e6d8 !important;
+    color: #286044 !important;
+
+    border-radius: 7px !important;
+}
+
+/* Secondary action buttons */
+#softphonePanel .dialpad-btns {
+    padding: 6px 0 !important;
+    gap: 6px !important;
+
+    justify-content: center !important;
+}
+
+#softphonePanel .dialpad-btns .btn-svg {
+    background: #ffffff !important;
+    border: 1px solid #dce9e1 !important;
+    border-radius: 8px !important;
+
+    box-shadow: 0 1px 3px rgba(25,80,55,.04) !important;
+}
+
+/* Transfer / full-width actions */
+#softphonePanel #XferControl .btn-svg,
+#softphonePanel #PauseCodeButtons .btn-svg,
+#softphonePanel #hotkeysdisplay .btn-svg,
+#softphonePanel #AgentAlertSpan .btn {
+    min-height: 36px !important;
+
+    border-radius: 8px !important;
+
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+}
+
+/* Compact spacing */
+#softphonePanel .mt-2 {
+    margin-top: 4px !important;
+}
+
+#softphonePanel .m-2 {
+    margin: 5px !important;
+}
+
+/* Scrollbar */
+#softphonePanel #left_sidebar::-webkit-scrollbar {
+    width: 5px !important;
+}
+
+#softphonePanel #left_sidebar::-webkit-scrollbar-track {
+    background: #eef6f1 !important;
+}
+
+#softphonePanel #left_sidebar::-webkit-scrollbar-thumb {
+    background: #b9d4c2 !important;
+    border-radius: 10px !important;
+}
+
+
+/* =========================================================
+   HNC AGENT MODERN - LOGOUT SCREEN UI CLEANUP
+   CSS ONLY - VICIdial logout JavaScript untouched
+   ========================================================= */
+
+/* Hide custom floating UI while VICIdial logout screen is visible */
+body:has(#LogouTBox[style*="visibility: visible"]) #whatsapp_header_btn {
+    display: none !important;
+}
+
+body:has(#LogouTBox[style*="visibility: visible"]) #hncSoftphoneToggle {
+    display: none !important;
+}
+
+/* Also hide WhatsApp popup if it happens to be open */
+body:has(#LogouTBox[style*="visibility: visible"]) #whatsapp_modal {
+    display: none !important;
+}
+
+
+/* HNC - Softphone permanently visible */
+#hncSoftphoneToggle {
+    display: none !important;
+}
+
+#softphonePanel {
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+
+/* =========================================================
+   HNC AGENT MODERN - LOGIN / RELOGIN UI
+   UI ONLY - VICIdial login logic untouched
+   ========================================================= */
+
+/* Login page base */
+body.texture:has(.Logo.login) {
+    background: #f4faf7 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+}
+
+.Logo.login {
+    width: 100% !important;
+    height: 100vh !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.Logo.login > .row {
+    height: 100vh !important;
+    margin: 0 !important;
+}
+
+/* =========================================================
+   LEFT BRAND PANEL
+   ========================================================= */
+
+.Logo.login .login-bg {
+    height: 100vh !important;
+    min-height: 100vh !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            #174f7f 0%,
+            #215b8f 55%,
+            #1b527f 100%
+        ) !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.Logo.login .login-bg::before {
+    content: "" !important;
+    position: absolute !important;
+    width: 420px !important;
+    height: 420px !important;
+    border-radius: 50% !important;
+    background: rgba(255,255,255,.035) !important;
+    top: -160px !important;
+    left: -160px !important;
+}
+
+.Logo.login .login-bg::after {
+    content: "" !important;
+    position: absolute !important;
+    width: 520px !important;
+    height: 520px !important;
+    border-radius: 50% !important;
+    background: rgba(255,255,255,.025) !important;
+    bottom: -260px !important;
+    right: -180px !important;
+}
+
+.Logo.login .login-bg .wrap {
+    width: 100% !important;
+    height: 100% !important;
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+.Logo.login .TextWrap {
+    padding: 50px !important;
+}
+
+.Logo.login .login-bg .TextWrap > img {
+    width: auto !important;
+    max-width: 330px !important;
+    max-height: 230px !important;
+    object-fit: contain !important;
+    margin-bottom: 22px !important;
+}
+
+.Logo.login .login-bg .TextWrap p {
+    letter-spacing: .2px !important;
+}
+
+/* =========================================================
+   RIGHT LOGIN AREA
+   ========================================================= */
+
+.Logo.login .main-wrap {
+    height: 100vh !important;
+    min-height: 100vh !important;
+
+    background: #f7fbf9 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 35px 55px !important;
+}
+
+.Logo.login .main-wrap > .wrap {
+    width: 100% !important;
+    max-width: 590px !important;
+}
+
+/* Main login card */
+.Logo.login .main-login {
+    width: 100% !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #dcebe3 !important;
+    border-radius: 18px !important;
+
+    padding: 34px 38px 38px !important;
+
+    box-shadow:
+        0 12px 35px rgba(25,80,55,.09) !important;
+}
+
+/* Logo */
+.Logo.login .main-login > .w-100 > img.Logo {
+    width: 150px !important;
+    max-width: 150px !important;
+    height: auto !important;
+
+    display: block !important;
+    margin: 0 auto 25px !important;
+}
+
+/* Heading row */
+.Logo.login .main-login h2,
+.Logo.login .main-login h3 {
+    color: #205f47 !important;
+
+    font-weight: 700 !important;
+    letter-spacing: -.3px !important;
+
+    margin: 0 !important;
+}
+
+/* Login title */
+.Logo.login .main-login h2 {
+    font-size: 28px !important;
+}
+
+.Logo.login .main-login h3 {
+    font-size: 24px !important;
+}
+
+/* Timeclock button */
+.Logo.login .main-login button.bg-blue {
+    width: 42px !important;
+    height: 42px !important;
+
+    padding: 0 !important;
+
+    border: 0 !important;
+    border-radius: 10px !important;
+
+    background: #205b89 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    box-shadow: 0 4px 12px rgba(32,91,137,.18) !important;
+}
+
+.Logo.login .main-login button.bg-blue:hover {
+    transform: translateY(-1px) !important;
+}
+
+/* =========================================================
+   LOGIN FORM
+   ========================================================= */
+
+.Logo.login .login-form {
+    margin-top: 28px !important;
+}
+
+.Logo.login .login-form > .row {
+    margin-left: -7px !important;
+    margin-right: -7px !important;
+}
+
+.Logo.login .login-form .custom-input {
+    padding-left: 7px !important;
+    padding-right: 7px !important;
+    margin-bottom: 14px !important;
+}
+
+/* Input group */
+.Logo.login .login-form .input-group {
+    width: 100% !important;
+    display: flex !important;
+}
+
+/* Small clean icon box */
+.Logo.login .login-form .input-group-addon {
+    width: 48px !important;
+    min-width: 48px !important;
+
+    height: 48px !important;
+
+    padding: 0 !important;
+
+    border: 1px solid #dcebe3 !important;
+    border-right: 0 !important;
+
+    border-radius: 11px 0 0 11px !important;
+
+    background: #edf7f2 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.Logo.login .login-form .input-group-addon img {
+    width: 20px !important;
+    height: 20px !important;
+
+    object-fit: contain !important;
+}
+
+/* Inputs */
+.Logo.login .login-form .form-control {
+    height: 48px !important;
+
+    border: 1px solid #dcebe3 !important;
+    border-left: 0 !important;
+
+    border-radius: 0 11px 11px 0 !important;
+
+    background: #ffffff !important;
+
+    color: #244b3b !important;
+
+    font-size: 14px !important;
+
+    box-shadow: none !important;
+
+    padding: 10px 14px !important;
+}
+
+.Logo.login .login-form .form-control::placeholder {
+    color: #91a69d !important;
+}
+
+.Logo.login .login-form .form-control:focus {
+    border-color: #76b59a !important;
+    box-shadow: 0 0 0 3px rgba(71,150,111,.10) !important;
+    outline: none !important;
+}
+
+/* =========================================================
+   CAMPAIGN SELECT
+   ========================================================= */
+
+.Logo.login #LogiNCamPaigns {
+    display: block !important;
+    width: 100% !important;
+}
+
+.Logo.login #LogiNCamPaigns select,
+.Logo.login .login-form select {
+    width: 100% !important;
+
+    height: 48px !important;
+
+    border: 1px solid #dcebe3 !important;
+    border-radius: 11px !important;
+
+    background: #ffffff !important;
+
+    color: #315847 !important;
+
+    padding: 0 14px !important;
+
+    font-size: 14px !important;
+
+    box-shadow: none !important;
+}
+
+.Logo.login #LogiNCamPaigns select:focus,
+.Logo.login .login-form select:focus {
+    border-color: #76b59a !important;
+    box-shadow: 0 0 0 3px rgba(71,150,111,.10) !important;
+    outline: none !important;
+}
+
+/* Refresh campaign button */
+.Logo.login #LogiNReseT {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.Logo.login #LogiNReseT a {
+    width: 42px !important;
+    height: 42px !important;
+
+    padding: 0 !important;
+
+    border-radius: 10px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    background: #205b89 !important;
+}
+
+.Logo.login #LogiNReseT img {
+    width: 18px !important;
+    height: 18px !important;
+}
+
+/* =========================================================
+   SUBMIT BUTTON
+   ========================================================= */
+
+.Logo.login .login-btn,
+.Logo.login input.login-btn {
+    width: 100% !important;
+
+    min-height: 48px !important;
+
+    border: 0 !important;
+    border-radius: 11px !important;
+
+    background: #205b89 !important;
+    color: #ffffff !important;
+
+    font-size: 16px !important;
+    font-weight: 600 !important;
+
+    letter-spacing: .2px !important;
+
+    box-shadow: 0 5px 14px rgba(32,91,137,.18) !important;
+
+    transition:
+        transform .15s ease,
+        box-shadow .15s ease,
+        background .15s ease !important;
+}
+
+.Logo.login .login-btn:hover,
+.Logo.login input.login-btn:hover {
+    background: #174e7b !important;
+
+    transform: translateY(-1px) !important;
+
+    box-shadow: 0 7px 18px rgba(32,91,137,.24) !important;
+}
+
+.Logo.login .login-btn:active,
+.Logo.login input.login-btn:active {
+    transform: translateY(0) !important;
+}
+
+/* =========================================================
+   RELOGIN - 4 INPUT LAYOUT
+   ========================================================= */
+
+.Logo.login .login-form .row {
+    align-items: center !important;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 991px) {
+
+    .Logo.login .main-wrap {
+        padding: 25px !important;
+    }
+
+    .Logo.login .main-login {
+        padding: 28px !important;
+    }
+
+}
+
+@media (max-width: 767px) {
+
+    body.texture:has(.Logo.login) {
+        overflow: auto !important;
+    }
+
+    .Logo.login,
+    .Logo.login > .row,
+    .Logo.login .main-wrap {
+        height: auto !important;
+        min-height: 100vh !important;
+    }
+
+    .Logo.login .main-wrap {
+        padding: 20px !important;
+    }
+
+    .Logo.login .main-login {
+        padding: 25px 20px 28px !important;
+        border-radius: 15px !important;
+    }
+
+    .Logo.login .login-form .custom-input {
+        width: 100% !important;
+    }
+
+    .Logo.login .main-login h2 {
+        font-size: 24px !important;
+    }
+
+    .Logo.login .main-login h3 {
+        font-size: 22px !important;
+    }
+
+}
+
+
+/* =========================================================
+   HNC AGENT MODERN - LOGIN V2
+   Green Version-2 Login Theme
+   Scoped ONLY to .login screens
+   ========================================================= */
+
+.login {
+    min-height: 100vh !important;
+    background: #f4faf6 !important;
+    overflow: hidden !important;
+}
+
+/* ---------- LEFT BRAND PANEL ---------- */
+
+.login .login-bg {
+    position: relative !important;
+    min-height: 100vh !important;
+    background:
+        radial-gradient(circle at 12% 18%, rgba(126,190,57,.22) 0 12%, transparent 13%),
+        radial-gradient(circle at 88% 82%, rgba(126,190,57,.14) 0 16%, transparent 17%),
+        linear-gradient(145deg, #063f2b 0%, #0b5b3c 48%, #124d37 100%) !important;
+    overflow: hidden !important;
+}
+
+/* decorative glow */
+.login .login-bg::before {
+    content: "" !important;
+    position: absolute !important;
+    width: 430px !important;
+    height: 430px !important;
+    left: -220px !important;
+    top: -170px !important;
+    border-radius: 50% !important;
+    border: 1px solid rgba(180,220,100,.20) !important;
+    box-shadow:
+        0 0 0 55px rgba(180,220,100,.035),
+        0 0 0 110px rgba(180,220,100,.025) !important;
+}
+
+.login .login-bg::after {
+    content: "" !important;
+    position: absolute !important;
+    width: 500px !important;
+    height: 500px !important;
+    right: -300px !important;
+    bottom: -280px !important;
+    border-radius: 50% !important;
+    border: 1px solid rgba(180,220,100,.18) !important;
+    box-shadow:
+        0 0 0 35px rgba(180,220,100,.025),
+        0 0 0 70px rgba(180,220,100,.02) !important;
+}
+
+.login .login-bg .wrap {
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+.login .login-bg .TextWrap {
+    padding: 70px 55px !important;
+}
+
+/* Brand logo */
+.login .login-bg .TextWrap > img {
+    width: 280px !important;
+    max-width: 72% !important;
+    margin-bottom: 25px !important;
+    filter: drop-shadow(0 12px 24px rgba(0,0,0,.20)) !important;
+}
+
+/* Tagline */
+.login .login-bg .TextWrap > p:first-of-type {
+    color: #ffffff !important;
+    font-size: 30px !important;
+    line-height: 1.25 !important;
+    font-weight: 500 !important;
+    letter-spacing: .2px !important;
+    margin-top: 20px !important;
+}
+
+.login .login-bg .TextWrap > p:first-of-type::first-line {
+    color: #ffffff !important;
+}
+
+/* Contact */
+.login .login-bg .TextWrap > p:last-of-type {
+    position: absolute !important;
+    left: 55px !important;
+    bottom: 45px !important;
+    margin: 0 !important;
+    padding: 18px 24px !important;
+    text-align: left !important;
+    color: #ecf8ef !important;
+    font-size: 14px !important;
+    line-height: 1.8 !important;
+    background: rgba(255,255,255,.055) !important;
+    border: 1px solid rgba(255,255,255,.12) !important;
+    border-radius: 16px !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+/* ---------- RIGHT LOGIN AREA ---------- */
+
+.login .main-wrap {
+    min-height: 100vh !important;
+    background:
+        radial-gradient(circle at 85% 10%, rgba(126,190,57,.12), transparent 28%),
+        linear-gradient(145deg, #f7fcf8 0%, #eef8f1 100%) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 45px !important;
+}
+
+/* Move card away from old centered position */
+.login .main-wrap .wrap {
+    width: 100% !important;
+    max-width: 610px !important;
+}
+
+.login .main-wrap .main-login {
+    position: relative !important;
+    background: #ffffff !important;
+    border: 1px solid #d9ebdf !important;
+    border-radius: 26px !important;
+    padding: 42px 44px 38px !important;
+    box-shadow:
+        0 20px 55px rgba(20,85,55,.12),
+        0 4px 14px rgba(20,85,55,.06) !important;
+}
+
+/* Logo becomes compact V2 */
+.login .main-wrap .main-login .Logo {
+    display: block !important;
+    width: 150px !important;
+    height: auto !important;
+    margin: 0 auto 28px !important;
+}
+
+/* Login title */
+.login .main-wrap .main-login h2,
+.login .main-wrap .main-login h3 {
+    color: #14553c !important;
+    font-size: 30px !important;
+    font-weight: 700 !important;
+    letter-spacing: -.4px !important;
+    margin: 0 !important;
+}
+
+.login .main-wrap .main-login h2::after,
+.login .main-wrap .main-login h3::after {
+    content: "" !important;
+    display: block !important;
+    width: 70px !important;
+    height: 4px !important;
+    margin-top: 12px !important;
+    border-radius: 4px !important;
+    background: linear-gradient(90deg, #78be35, #17623f) !important;
+}
+
+/* Timeclock button */
+.login .main-wrap .main-login .bg-blue {
+    width: 46px !important;
+    height: 46px !important;
+    border-radius: 12px !important;
+    border: 1px solid #d8eade !important;
+    background: #ffffff !important;
+    box-shadow: 0 5px 14px rgba(20,85,55,.10) !important;
+}
+
+.login .main-wrap .main-login .bg-blue:hover {
+    background: #eff9f2 !important;
+}
+
+/* ---------- FORM ---------- */
+
+.login .login-form {
+    width: 100% !important;
+    margin-top: 28px !important;
+}
+
+.login .login-form > .row {
+    margin-left: -7px !important;
+    margin-right: -7px !important;
+}
+
+.login .login-form .custom-input {
+    padding: 7px !important;
+}
+
+.login .login-form .input-group {
+    width: 100% !important;
+    height: 52px !important;
+}
+
+.login .login-form .input-group-addon {
+    width: 54px !important;
+    min-width: 54px !important;
+    padding: 0 !important;
+    border: 1px solid #d8e9de !important;
+    border-right: 0 !important;
+    border-radius: 13px 0 0 13px !important;
+    background: #edf8f0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.login .login-form .input-group-addon img {
+    width: 20px !important;
+    height: 20px !important;
+    opacity: .85 !important;
+}
+
+.login .login-form .form-control {
+    height: 52px !important;
+    border: 1px solid #d8e9de !important;
+    border-left: 0 !important;
+    border-radius: 0 13px 13px 0 !important;
+    background: #ffffff !important;
+    color: #244c3b !important;
+    font-size: 15px !important;
+    box-shadow: none !important;
+    transition: .18s ease !important;
+}
+
+.login .login-form .form-control:focus {
+    border-color: #79b83b !important;
+    box-shadow: 0 0 0 3px rgba(121,184,59,.13) !important;
+}
+
+/* Campaign dropdown */
+.login #LogiNCamPaigns select,
+.login #LogiNCamPaigns .form-control {
+    height: 52px !important;
+    width: 100% !important;
+    border: 1px solid #d8e9de !important;
+    border-radius: 13px !important;
+    background: #ffffff !important;
+    color: #315b48 !important;
+    padding: 0 16px !important;
+    font-size: 15px !important;
+}
+
+/* Refresh */
+.login #LogiNReseT {
+    padding-left: 7px !important;
+}
+
+.login #LogiNReseT a {
+    width: 52px !important;
+    height: 52px !important;
+    padding: 0 !important;
+    border-radius: 13px !important;
+    background: #edf8f0 !important;
+    border: 1px solid #d8e9de !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.login #LogiNReseT a:hover {
+    background: #dff1e4 !important;
+}
+
+/* Submit */
+.login .login-btn {
+    height: 55px !important;
+    margin-top: 12px !important;
+    border: 0 !important;
+    border-radius: 14px !important;
+    background: linear-gradient(100deg, #79bd36 0%, #17613e 100%) !important;
+    color: #ffffff !important;
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    letter-spacing: .4px !important;
+    box-shadow: 0 9px 20px rgba(31,104,61,.20) !important;
+    transition: transform .18s ease, box-shadow .18s ease !important;
+}
+
+.login .login-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 13px 25px rgba(31,104,61,.28) !important;
+}
+
+.login .login-btn:active {
+    transform: translateY(0) !important;
+}
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 767px) {
+
+    .login .login-bg {
+        display: none !important;
+    }
+
+    .login .main-wrap {
+        width: 100% !important;
+        padding: 20px !important;
+    }
+
+    .login .main-wrap .main-login {
+        padding: 30px 22px !important;
+        border-radius: 20px !important;
+    }
+
+    .login .main-wrap .main-login .Logo {
+        width: 125px !important;
+    }
+
+    .login .main-wrap .main-login h2,
+    .login .main-wrap .main-login h3 {
+        font-size: 25px !important;
+    }
+
+    .login .login-form .custom-input {
+        width: 100% !important;
+    }
+
+}
+
+
+/* =========================================================
+   HNC AGENT MODERN - LOGIN V2 FINAL OVERRIDE
+   Green/Mint Agent Theme
+   ========================================================= */
+
+/* Login page overall */
+body.login {
+    background: #f3faf6 !important;
+    overflow: hidden !important;
+}
+
+/* LEFT BRAND PANEL */
+body.login .login-bg {
+    position: relative !important;
+    width: 50% !important;
+    min-height: 100vh !important;
+    background: #185b45 !important;
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Decorative circles */
+body.login .login-bg::before {
+    content: "" !important;
+    position: absolute !important;
+    width: 520px !important;
+    height: 520px !important;
+    border: 1px solid rgba(255,255,255,.12) !important;
+    border-radius: 50% !important;
+    left: -230px !important;
+    top: -170px !important;
+}
+
+body.login .login-bg::after {
+    content: "" !important;
+    position: absolute !important;
+    width: 460px !important;
+    height: 460px !important;
+    border: 1px solid rgba(160,220,185,.14) !important;
+    border-radius: 50% !important;
+    right: -250px !important;
+    bottom: -220px !important;
+}
+
+/* Left content */
+body.login .login-bg .wrap {
+    position: relative !important;
+    z-index: 5 !important;
+    width: 100% !important;
+    max-width: 560px !important;
+    text-align: center !important;
+    padding: 40px !important;
+}
+
+body.login .login-bg .TextWrap {
+    position: relative !important;
+    z-index: 5 !important;
+}
+
+body.login .login-bg .TextWrap > img {
+    width: 270px !important;
+    max-width: 75% !important;
+    height: auto !important;
+    margin: 0 auto 55px !important;
+    display: block !important;
+}
+
+body.login .login-bg .TextWrap > p:first-of-type {
+    color: #ffffff !important;
+    font-size: 34px !important;
+    font-weight: 500 !important;
+    line-height: 1.25 !important;
+    margin: 0 auto !important;
+    letter-spacing: .2px !important;
+}
+
+body.login .login-bg .TextWrap > p:last-of-type {
+    color: rgba(255,255,255,.82) !important;
+    font-size: 14px !important;
+    line-height: 1.7 !important;
+    margin-top: 145px !important;
+    padding: 15px 22px !important;
+    display: inline-block !important;
+    border: 1px solid rgba(255,255,255,.16) !important;
+    border-radius: 14px !important;
+    background: rgba(255,255,255,.05) !important;
+}
+
+/* RIGHT PANEL */
+body.login .main-wrap {
+    width: 50% !important;
+    min-height: 100vh !important;
+    background: #f3faf6 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 55px !important;
+}
+
+/* Login card */
+body.login .main-wrap > .wrap {
+    width: 100% !important;
+    max-width: 520px !important;
+}
+
+body.login .main-wrap .main-login {
+    background: #ffffff !important;
+    border: 1px solid #d9ebe0 !important;
+    border-radius: 26px !important;
+    padding: 48px 46px 42px !important;
+    box-shadow: 0 18px 50px rgba(24,91,69,.10) !important;
+}
+
+/* Logo */
+body.login .main-wrap .main-login .Logo {
+    width: 125px !important;
+    height: auto !important;
+    margin: 0 auto 30px !important;
+    display: block !important;
+}
+
+/* Heading */
+body.login .main-wrap .main-login h2,
+body.login .main-wrap .main-login h3 {
+    color: #185b45 !important;
+    font-size: 31px !important;
+    font-weight: 700 !important;
+    text-align: left !important;
+    margin: 0 0 34px !important;
+    position: relative !important;
+}
+
+body.login .main-wrap .main-login h2::after,
+body.login .main-wrap .main-login h3::after {
+    content: "" !important;
+    display: block !important;
+    width: 72px !important;
+    height: 4px !important;
+    margin-top: 12px !important;
+    border-radius: 4px !important;
+    background: #69b64c !important;
+}
+
+/* Inputs */
+body.login .login-form .custom-input {
+    height: 52px !important;
+    border: 1px solid #d5e7dd !important;
+    border-radius: 12px !important;
+    background: #fbfefc !important;
+    color: #185b45 !important;
+    font-size: 15px !important;
+    box-shadow: none !important;
+    transition: border-color .2s ease, box-shadow .2s ease !important;
+}
+
+body.login .login-form .custom-input:focus {
+    border-color: #69b64c !important;
+    box-shadow: 0 0 0 3px rgba(105,182,76,.12) !important;
+    outline: none !important;
+}
+
+/* Login input icon */
+body.login .login-form .input-group-addon {
+    background: #eef8f2 !important;
+    border: 1px solid #d5e7dd !important;
+    color: #185b45 !important;
+    border-radius: 12px 0 0 12px !important;
+}
+
+/* Campaign select */
+body.login select {
+    height: 52px !important;
+    border: 1px solid #d5e7dd !important;
+    border-radius: 12px !important;
+    background: #ffffff !important;
+    color: #476b5a !important;
+    padding-left: 15px !important;
+}
+
+/* Submit */
+body.login .main-login .bg-blue,
+body.login .main-login button[type="submit"],
+body.login .main-login input[type="submit"] {
+    width: 100% !important;
+    min-height: 54px !important;
+    border: 0 !important;
+    border-radius: 12px !important;
+    background: #185b45 !important;
+    color: #ffffff !important;
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    letter-spacing: .3px !important;
+    box-shadow: 0 8px 18px rgba(24,91,69,.18) !important;
+    transition: all .2s ease !important;
+}
+
+body.login .main-login .bg-blue:hover,
+body.login .main-login button[type="submit"]:hover,
+body.login .main-login input[type="submit"]:hover {
+    background: #124a38 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 11px 22px rgba(24,91,69,.22) !important;
+}
+
+/* Small clock/history button */
+body.login .main-login .btn-info,
+body.login .main-login .btn-primary {
+    border-radius: 10px !important;
+}
+
+/* RELLOGIN same V2 treatment */
+body.login .main-wrap .main-login {
+    transition: box-shadow .2s ease !important;
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+
+    body.login {
+        overflow-y: auto !important;
+    }
+
+    body.login .login-bg {
+        display: none !important;
+    }
+
+    body.login .main-wrap {
+        width: 100% !important;
+        min-height: 100vh !important;
+        padding: 25px !important;
+    }
+
+    body.login .main-wrap .main-login {
+        padding: 34px 24px !important;
+        border-radius: 20px !important;
+    }
+
+    body.login .main-wrap .main-login h2,
+    body.login .main-wrap .main-login h3 {
+        font-size: 26px !important;
+    }
+}
+
+
+/* =========================================================
+   HNC AGENT MODERN - SOFTPHONE FLOATING V2
+   UI ONLY - VICIdial CALL LOGIC UNTOUCHED
+   ========================================================= */
+
+#softphonePanel {
+    position: fixed !important;
+
+    top: 105px !important;
+    right: 28px !important;
+    bottom: 24px !important;
+
+    width: 370px !important;
+    max-width: 370px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    z-index: 99990 !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #d7e9df !important;
+    border-radius: 16px !important;
+
+    box-shadow:
+        0 12px 35px rgba(20, 80, 55, .18),
+        0 3px 10px rgba(20, 80, 55, .08) !important;
+
+    overflow: hidden !important;
+}
+
+/* Remove old bootstrap side-panel behavior */
+#softphonePanel.col-sm-3 {
+    float: none !important;
+}
+
+/* Internal phone area */
+#softphonePanel #left_sidebar {
+    width: 100% !important;
+    height: 100% !important;
+
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+
+    background: #ffffff !important;
+
+    padding: 0 12px 16px 12px !important;
+}
+
+/* Phone content wrapper */
+#softphonePanel .page-wrap,
+#softphonePanel .bs-example {
+    width: 100% !important;
+    height: auto !important;
+
+    background: #ffffff !important;
+}
+
+/* ---------------------------------------------------------
+   PHONE PANEL INTERNAL ELEMENTS
+   --------------------------------------------------------- */
+
+#softphonePanel input,
+#softphonePanel select {
+    border: 1px solid #d8e9df !important;
+    border-radius: 9px !important;
+
+    background: #ffffff !important;
+
+    min-height: 38px !important;
+
+    box-shadow: none !important;
+}
+
+#softphonePanel input:focus,
+#softphonePanel select:focus {
+    border-color: #2f9e68 !important;
+
+    outline: none !important;
+
+    box-shadow:
+        0 0 0 3px rgba(47, 158, 104, .10) !important;
+}
+
+/* Dial pad buttons */
+#softphonePanel button {
+    border-radius: 9px !important;
+
+    border: 1px solid #d9e9df !important;
+
+    box-shadow: none !important;
+
+    transition:
+        transform .12s ease,
+        box-shadow .12s ease,
+        background .12s ease !important;
+}
+
+#softphonePanel button:hover {
+    transform: translateY(-1px) !important;
+
+    box-shadow:
+        0 4px 10px rgba(20, 80, 55, .10) !important;
+}
+
+/* ---------------------------------------------------------
+   PHONE ACTION BUTTONS
+   --------------------------------------------------------- */
+
+#softphonePanel .btn-success,
+#softphonePanel .btn-green {
+    background: #20b86b !important;
+    border-color: #20b86b !important;
+    color: #ffffff !important;
+}
+
+#softphonePanel .btn-danger,
+#softphonePanel .btn-red {
+    background: #e74c3c !important;
+    border-color: #e74c3c !important;
+    color: #ffffff !important;
+}
+
+/* ---------------------------------------------------------
+   FAST DIAL
+   --------------------------------------------------------- */
+
+#softphonePanel #FastDialButton,
+#softphonePanel .fast-dial,
+#softphonePanel button[id*="Fast"],
+#softphonePanel button[id*="fast"] {
+    border-radius: 10px !important;
+
+    background: #145c40 !important;
+    color: #ffffff !important;
+
+    border: none !important;
+
+    min-height: 45px !important;
+
+    font-weight: 600 !important;
+
+    box-shadow:
+        0 5px 14px rgba(20, 92, 64, .20) !important;
+}
+
+/* ---------------------------------------------------------
+   SCROLLBAR
+   --------------------------------------------------------- */
+
+#softphonePanel #left_sidebar::-webkit-scrollbar {
+    width: 5px !important;
+}
+
+#softphonePanel #left_sidebar::-webkit-scrollbar-track {
+    background: #f3f8f5 !important;
+}
+
+#softphonePanel #left_sidebar::-webkit-scrollbar-thumb {
+    background: #b9d8c7 !important;
+    border-radius: 10px !important;
+}
+
+/* ---------------------------------------------------------
+   SOFTPHONE CLOSE / X BUTTON
+   --------------------------------------------------------- */
+
+#softphonePanel .hnc-softphone-close,
+#softphonePanel .close,
+#softphonePanel [data-dismiss="softphone"] {
+    border-radius: 50% !important;
+}
+
+/* ---------------------------------------------------------
+   KEEP AGENT SCREEN BEHIND PHONE
+   --------------------------------------------------------- */
+
+#MainPanel {
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* ---------------------------------------------------------
+   DESKTOP
+   --------------------------------------------------------- */
+
+@media (min-width: 1200px) {
+
+    #softphonePanel {
+        width: 370px !important;
+        max-width: 370px !important;
+
+        right: 28px !important;
+        top: 105px !important;
+        bottom: 24px !important;
+    }
+
+}
+
+/* ---------------------------------------------------------
+   LAPTOP
+   --------------------------------------------------------- */
+
+@media (min-width: 768px) and (max-width: 1199px) {
+
+    #softphonePanel {
+        width: 350px !important;
+        max-width: 350px !important;
+
+        right: 18px !important;
+        top: 95px !important;
+        bottom: 18px !important;
+    }
+
+}
+
+/* ---------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 767px) {
+
+    #softphonePanel {
+        top: 70px !important;
+        right: 8px !important;
+        bottom: 8px !important;
+
+        width: calc(100% - 16px) !important;
+        max-width: none !important;
+
+        border-radius: 14px !important;
+    }
+
+}
+

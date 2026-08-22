@@ -1,0 +1,58 @@
+# =========================================================
+# VICIdial New Theme Admin
+# =========================================================
+
+# Logs
+*.log
+*.logs
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Backup files
+*.bak
+*.bak.*
+*.backup
+
+# Archives / packaged files
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+
+# Runtime / cache
+cache/
+tmp/
+temp/
+
+# Local environment / secrets
+.env
+.env.*
+!.env.example
+
+# Database backups
+*.sql
+*.sql.gz
+
+# Phone/debug runtime files
+agent-modern/phone/debug/
+
+# IDE
+.idea/
+.vscode/
+
+# Node / frontend generated files
+node_modules/
+
+
+# Local Git repository backups
+.git-HNC-CC-backup-*/
+.git-old-backup-*/

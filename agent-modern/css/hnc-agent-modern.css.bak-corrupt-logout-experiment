@@ -1,0 +1,806 @@
+/*
+ * HNC Smart CRM - Modern Agent Panel
+ *
+ * Development theme only.
+ * Existing VICIdial call logic is untouched.
+ */
+
+    --hnc-green-light: #f4faf6;
+
+    --hnc-text: #355944;
+    --hnc-text-muted: #719083;
+
+    --hnc-border: #dce9df;
+    --hnc-border-soft: #e8f1eb;
+
+    --hnc-white: #ffffff;
+
+    --hnc-radius: 10px;
+    --hnc-radius-small: 7px;
+
+    --hnc-shadow: 0 2px 10px rgba(25, 80, 55, 0.08);
+}
+
+/* Basic page foundation */
+
+html,
+body {
+    background: #f5faf7 !important;
+    color: var(--hnc-text) !important;
+
+/* Modern typography */
+
+body,
+button,
+input,
+select,
+textarea {
+    font-family: "Montserrat", Arial, sans-serif !important;
+
+/* Links */
+
+a {
+    color: var(--hnc-green) !important;
+
+a:hover {
+    color: var(--hnc-green-dark) !important;
+
+    box-shadow: var(--hnc-shadow);
+
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #9bc9ae !important;
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(22, 122, 80, 0.08) !important;
+
+
+    right: 8px;
+    z-index: 99999;
+
+    padding: 3px 7px;
+    border-radius: 5px;
+
+    background: rgba(22, 122, 80, 0.08);
+    color: rgba(22, 122, 80, 0.55);
+
+    font-size: 8px;
+    font-weight: 600;
+    pointer-events: none;
+
+    min-height: 64px !important;
+    padding: 0 18px !important;
+
+    background: #ffffff !important;
+    border: 0 !important;
+    border-bottom: 1px solid var(--hnc-border) !important;
+
+    box-shadow: 0 2px 10px rgba(25, 80, 55, 0.06) !important;
+
+.navbar .container-fluid {
+    height: 64px !important;
+    padding: 0 !important;
+
+#main_header1 {
+    height: 64px !important;
+    display: flex !important;
+    align-items: center !important;
+
+/* Logo */
+
+.navbar-header.header-height {
+    height: 64px !important;
+    display: flex !important;
+    align-items: center !important;
+    min-width: 180px !important;
+
+.navbar-header .navbar-brand {
+    padding: 8px 15px 8px 0 !important;
+    height: 64px !important;
+    display: flex !important;
+    align-items: center !important;
+
+.navbar-header .navbar-brand img {
+    max-height: 42px !important;
+    width: auto !important;
+
+/* Main status area */
+
+.header-ul {
+    height: 64px !important;
+    margin: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+
+    flex: 1 !important;
+
+.header-ul > li {
+    position: static !important;
+    left: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+
+/* Queue / callback status */
+
+.header-ul > li.color-blue {
+    padding: 7px 11px !important;
+
+    background: var(--hnc-green-light) !important;
+    border: 1px solid var(--hnc-border-soft) !important;
+    border-radius: var(--hnc-radius-small) !important;
+
+    color: var(--hnc-text) !important;
+
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    white-space: nowrap !important;
+
+.header-ul .label {
+    margin-left: 4px !important;
+
+    background: var(--hnc-green-soft) !important;
+    color: var(--hnc-green-dark) !important;
+
+    border: 1px solid var(--hnc-border) !important;
+    border-radius: 12px !important;
+
+    font-size: 10px !important;
+    padding: 3px 7px !important;
+
+/* Callback */
+
+#CallbacksButtons {
+    display: inline-block !important;
+
+    background: var(--hnc-green-soft) !important;
+    color: var(--hnc-green-dark) !important;
+
+    border: 1px solid var(--hnc-border) !important;
+    border-radius: 8px !important;
+
+    padding: 7px 10px !important;
+
+#CBstatusSpan {
+    font-size: 10px !important;
+
+/* Live call indicator */
+
+.header-ul img[name="livecall"] {
+    height: 30px !important;
+    width: auto !important;
+
+/* Right menu */
+
+.right-menu {
+    height: 64px !important;
+    margin: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+
+.right-menu > li,
+.right-menu > span {
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+
+/* Dial / Call log */
+
+.right-menu img {
+    object-fit: contain !important;
+    transition: transform .15s ease, opacity .15s ease !important;
+
+.right-menu a:hover img {
+    transform: translateY(-1px) !important;
+    opacity: .82 !important;
+
+/* Power */
+
+.right-menu .fa-power-off {
+    color: var(--hnc-green) !important;
+    font-size: 23px !important;
+
+/* WhatsApp */
+
+#whatsapp_header_btn {
+    width: 38px !important;
+    height: 38px !important;
+
+    padding: 5px !important;
+    border-radius: 50% !important;
+
+    border: 1px solid #ccebd8 !important;
+    box-shadow: 0 2px 7px rgba(25, 80, 55, .10) !important;
+
+#whatsapp_header_btn img {
+    width: 25px !important;
+    height: 25px !important;
+
+/* WhatsApp modal */
+
+#whatsapp_modal {
+    border: 1px solid var(--hnc-border) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 12px 35px rgba(25, 80, 55, .18) !important;
+
+#whatsapp_box {
+    width: 100% !important;
+    height: 100% !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+
+#whatsapp_header {
+    background: var(--hnc-green) !important;
+    padding: 11px 13px !important;
+
+/* Header menu */
+
+.right-menu .dropdown-menu {
+    border: 1px solid var(--hnc-border) !important;
+    border-radius: 9px !important;
+
+    box-shadow: 0 8px 25px rgba(25, 80, 55, .12) !important;
+
+.right-menu .dropdown-menu li a {
+    color: var(--hnc-text) !important;
+    font-size: 11px !important;
+    padding: 8px 12px !important;
+
+.right-menu .dropdown-menu li a:hover {
+    background: var(--hnc-green-light) !important;
+    color: var(--hnc-green-dark) !important;
+
+/* Hide old absolute positioning */
+
+#SecondSspan,
+#ParkCounterSpan {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        padding: 0 8px !important;
+
+    .navbar-header.header-height {
+        min-width: 120px !important;
+
+    .navbar-header .navbar-brand img {
+        max-height: 34px !important;
+
+    .header-ul {
+        gap: 4px !important;
+        overflow: hidden !important;
+
+    .header-ul > li.color-blue {
+        padding: 5px 7px !important;
+        font-size: 9px !important;
+
+    .right-menu {
+        gap: 2px !important;
+
+
+    background: #f5faf7 !important;
+
+#MainPanelCustInfo #pcont {
+    padding: 0 !important;
+
+#MainPanelCustInfo .cl-mcont {
+    padding: 10px 12px 18px !important;
+
+/* ---------------------------------------------------------
+   CUSTOMER / SCRIPT TABS
+   --------------------------------------------------------- */
+
+#MainPanelCustInfo .nav-pills {
+    margin: 0 0 10px !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    border: 1px solid var(--hnc-border) !important;
+    border-radius: var(--hnc-radius) !important;
+    overflow: hidden;
+    box-shadow: var(--hnc-shadow);
+
+#MainPanelCustInfo .nav-pills > li {
+    margin: 0 !important;
+
+#MainPanelCustInfo .nav-pills > li > a {
+    margin: 0 !important;
+    padding: 13px 20px !important;
+    border-radius: 0 !important;
+    color: var(--hnc-green) !important;
+    background: #ffffff !important;
+    font-weight: 600 !important;
+    border: 0 !important;
+
+#MainPanelCustInfo .nav-pills > li.active > a,
+#MainPanelCustInfo .nav-pills > li.active > a:hover,
+#MainPanelCustInfo .nav-pills > li.active > a:focus {
+    background: var(--hnc-green-dark) !important;
+    color: #ffffff !important;
+
+/* ---------------------------------------------------------
+   CUSTOMER CONTENT AREA
+   --------------------------------------------------------- */
+
+#MainPanelCustInfo #main_section1 {
+    background: transparent !important;
+
+#MainPanelCustInfo #main_section2 {
+    background: transparent !important;
+
+#MainPanelCustInfo .content {
+    padding: 0 !important;
+
+/* Main scrolling customer form */
+#MainPanelCustInfo .content > .col-md-12 > .col-sm-12.bg-gray {
+    background: #ffffff !important;
+    border: 1px solid var(--hnc-border) !important;
+    border-radius: var(--hnc-radius) !important;
+    padding: 18px 20px 28px !important;
+    box-shadow: var(--hnc-shadow);
+
+/* ---------------------------------------------------------
+   SECTION HEADINGS
+   --------------------------------------------------------- */
+
+#MainPanelCustInfo .bg-gray h4 {
+    margin: 4px 0 8px 0 !important;
+    padding: 0 !important;
+    color: var(--hnc-green-dark) !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+
+#MainPanelCustInfo .bg-gray hr.colorgraph {
+    margin: 0 0 14px !important;
+    height: 1px !important;
+    border: 0 !important;
+    background: var(--hnc-border) !important;
+
+/* ---------------------------------------------------------
+   FORM GROUPS
+   --------------------------------------------------------- */
+
+#MainPanelCustInfo .bg-gray .form-group {
+    margin-bottom: 14px !important;
+
+#MainPanelCustInfo .bg-gray label {
+    display: block;
+    margin-bottom: 6px !important;
+    color: var(--hnc-text-muted) !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+
+/* ---------------------------------------------------------
+   CUSTOMER INPUTS
+   Existing IDs/names/classes untouched
+   --------------------------------------------------------- */
+
+#MainPanelCustInfo input.customer-page,
+#MainPanelCustInfo select.customer-page,
+#MainPanelCustInfo textarea.customer-page {
+    width: 100% !important;
+    min-height: 40px;
+    padding: 8px 11px !important;
+
+    background: #ffffff !important;
+    color: var(--hnc-text) !important;
+
+    border: 1px solid var(--hnc-border) !important;
+    border-radius: 8px !important;
+
+    box-shadow: none !important;
+    transition: border-color .15s ease,
+                box-shadow .15s ease,
+                background .15s ease !important;
+
+/* Focus */
+#MainPanelCustInfo input.customer-page:focus,
+#MainPanelCustInfo select.customer-page:focus,
+#MainPanelCustInfo textarea.customer-page:focus {
+    border-color: var(--hnc-green) !important;
+    background: #ffffff !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(22, 122, 80, 0.08) !important;
+
+/* Disabled / readonly */
+#MainPanelCustInfo input.customer-page:disabled,
+#MainPanelCustInfo select.customer-page:disabled,
+#MainPanelCustInfo textarea.customer-page:disabled {
+    background: #f3f7f4 !important;
+
+/* ---------------------------------------------------------
+   ROW SPACING
+   --------------------------------------------------------- */
+
+#MainPanelCustInfo .bg-gray > .row {
+    margin-left: -8px !important;
+    margin-right: -8px !important;
+
+#MainPanelCustInfo .bg-gray > .row > [class*="col-md-"] {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+
+/* ---------------------------------------------------------
+   CONTACT / NOTES
+   --------------------------------------------------------- */
+
+#MainPanelCustInfo textarea.customer-page {
+    min-height: 70px;
+    resize: vertical;
+
+/* ---------------------------------------------------------
+   REMOVE OLD VISUAL NOISE
+   --------------------------------------------------------- */
+
+#MainPanelCustInfo .colorgraph {
+    border-radius: 2px;
+
+/* ---------------------------------------------------------
+   SCROLLBAR
+   --------------------------------------------------------- */
+
+#MainPanelCustInfo .bg-gray::-webkit-scrollbar {
+    width: 7px;
+
+#MainPanelCustInfo .bg-gray::-webkit-scrollbar-track {
+    background: #f1f6f3;
+
+#MainPanelCustInfo .bg-gray::-webkit-scrollbar-thumb {
+    background: #c6dacf;
+    border-radius: 10px;
+
+#MainPanelCustInfo .bg-gray::-webkit-scrollbar-thumb:hover {
+    background: #9fbea9;
+
+
+    padding: 0 !important;
+
+    color: var(--hnc-green-dark) !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+
+#MainPanelCustInfo .bg-gray > .row > h4 + hr.colorgraph {
+    margin: 0 0 14px 0 !important;
+    background: var(--hnc-border) !important;
+
+/* Contact field columns */
+#MainPanelCustInfo #phone_code,
+#MainPanelCustInfo #alt_phone,
+#MainPanelCustInfo #security_phrase,
+#MainPanelCustInfo #email,
+#MainPanelCustInfo #phone_number {
+    min-height: 40px !important;
+
+/* Contact field labels */
+#MainPanelCustInfo #phone_code,
+#MainPanelCustInfo #alt_phone,
+#MainPanelCustInfo #security_phrase,
+#MainPanelCustInfo #email,
+#MainPanelCustInfo #phone_number {
+    box-sizing: border-box !important;
+
+/* History button */
+#MainPanelCustInfo #ViewCommentButton,
+#MainPanelCustInfo #OtherViewCommentButton {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    min-height: 28px !important;
+    padding: 4px 10px !important;
+
+    margin-left: 6px !important;
+
+    border: 1px solid var(--hnc-border) !important;
+    border-radius: 6px !important;
+
+    background: var(--hnc-green-soft) !important;
+    color: var(--hnc-green-dark) !important;
+
+    font-size: 11px !important;
+    font-weight: 600 !important;
+
+    cursor: pointer !important;
+
+#MainPanelCustInfo #ViewCommentButton:hover,
+#MainPanelCustInfo #OtherViewCommentButton:hover {
+    background: #d8f0e1 !important;
+    border-color: #b9d8c5 !important;
+
+/* Comments area */
+#MainPanelCustInfo #comments {
+    min-height: 44px !important;
+    line-height: 1.45 !important;
+
+/* Give contact section a little breathing room */
+#MainPanelCustInfo #phone_number {
+    margin-bottom: 2px !important;
+
+/* Keep contact rows aligned */
+#MainPanelCustInfo .bg-gray .row > .col-md-3 {
+    vertical-align: top;
+
+
+    #MainPanelCustInfo #phone_number {
+        width: 100% !important;
+
+    #MainPanelCustInfo #comments {
+        width: 100% !important;
+
+        width: 100% !important;
+
+
+
+
+    top: 82px !important;
+    right: 0 !important;
+    bottom: 35px !important;
+
+    width: 360px !important;
+    max-width: 360px !important;
+
+    z-index: 9900 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    background: #ffffff !important;
+
+    border-left: 1px solid var(--hnc-border) !important;
+
+    box-shadow: -6px 0 22px rgba(25, 80, 55, 0.12) !important;
+
+    transition:
+        transform .28s ease,
+        opacity .28s ease !important;
+
+/* Softphone internal area */
+#softphonePanel #left_sidebar {
+    width: 100% !important;
+    height: 100% !important;
+
+    overflow-y: auto !important;
+
+/* Hidden state */
+#softphonePanel.hnc-softphone-hidden {
+    transform: translateX(100%) !important;
+    opacity: 0 !important;
+
+    pointer-events: none !important;
+
+    top: 220px !important;
+
+    width: 46px !important;
+    height: 46px !important;
+
+    padding: 0 !important;
+
+    border: 0 !important;
+    border-radius: 50% !important;
+
+    background: var(--hnc-green) !important;
+    color: #ffffff !important;
+
+    font-size: 20px !important;
+    line-height: 46px !important;
+    text-align: center !important;
+
+    cursor: pointer !important;
+
+    z-index: 99999 !important;
+
+    box-shadow: 0 4px 14px rgba(25, 80, 55, .20) !important;
+
+    transition: transform .18s ease,
+                right .28s ease !important;
+
+#hncSoftphoneToggle:hover {
+    transform: scale(1.06) !important;
+
+/* When phone is open */
+#softphonePanel:not(.hnc-softphone-hidden)
+~ #hncSoftphoneToggle {
+    right: 374px !important;
+
+/* Softphone header area should remain visible */
+#softphonePanel .page-wrap {
+    height: 100% !important;
+
+/* Scrollbar */
+#softphonePanel #left_sidebar::-webkit-scrollbar {
+    width: 6px !important;
+
+#softphonePanel #left_sidebar::-webkit-scrollbar-track {
+    background: #f3f8f5 !important;
+
+#softphonePanel #left_sidebar::-webkit-scrollbar-thumb {
+    background: #c4d9cb !important;
+    border-radius: 6px !important;
+
+@media (max-width: 767px) {
+
+    #softphonePanel {
+        top: 60px !important;
+        bottom: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+
+    #softphonePanel.hnc-softphone-hidden {
+        transform: translateX(100%) !important;
+
+    #hncSoftphoneToggle {
+        right: 12px !important;
+        top: 180px !important;
+
+
+
+    width: 38px !important;
+    height: 38px !important;
+
+    padding: 0 !important;
+
+    border: 1px solid rgba(255,255,255,.35) !important;
+    border-radius: 50% !important;
+
+    background: #167a50 !important;
+    color: #ffffff !important;
+
+    font-size: 16px !important;
+    line-height: 38px !important;
+    text-align: center !important;
+
+    box-shadow: 0 3px 10px rgba(25,80,55,.18) !important;
+
+    transition:
+        transform .18s ease,
+        background .18s ease,
+        box-shadow .18s ease,
+        right .25s ease !important;
+
+#hncSoftphoneToggle:hover {
+    transform: scale(1.08) !important;
+    background: #126b45 !important;
+    box-shadow: 0 5px 14px rgba(25,80,55,.24) !important;
+
+#hncSoftphoneToggle:active {
+    transform: scale(.96) !important;
+
+@media (max-width: 767px) {
+
+    #hncSoftphoneToggle {
+        right: 10px !important;
+        top: 150px !important;
+
+        width: 36px !important;
+        height: 36px !important;
+
+        font-size: 15px !important;
+        line-height: 36px !important;
+
+
+
+#hncSoftphoneToggle.hnc-softphone-open {
+    right: 370px !important;
+
+
+
+body:has(#softphonePanel.hnc-softphone-hidden) #MainPanelCustInfo #pcont {
+    width: 100% !important;
+    max-width: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+
+body:has(#softphonePanel.hnc-softphone-hidden) #MainPanelCustInfo .cl-mcont {
+    width: 100% !important;
+    max-width: none !important;
+    padding-top: 4px !important;
+
+/* Customer card */
+body:has(#softphonePanel.hnc-softphone-hidden)
+#MainPanelCustInfo .content > .col-md-12 > .col-sm-12.bg-gray {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 12px 16px !important;
+
+/* Section headings become slightly tighter */
+body:has(#softphonePanel.hnc-softphone-hidden)
+#MainPanelCustInfo .bg-gray > .row > h4 {
+    margin-top: 4px !important;
+    margin-bottom: 6px !important;
+    font-size: 15px !important;
+
+body:has(#softphonePanel.hnc-softphone-hidden)
+#MainPanelCustInfo .bg-gray > .row > h4 + hr.colorgraph {
+    margin-bottom: 9px !important;
+
+/* Form spacing */
+body:has(#softphonePanel.hnc-softphone-hidden)
+#MainPanelCustInfo .bg-gray .form-group {
+    margin-bottom: 8px !important;
+
+/* Labels */
+body:has(#softphonePanel.hnc-softphone-hidden)
+#MainPanelCustInfo .bg-gray label {
+    margin-bottom: 3px !important;
+    font-size: 11px !important;
+
+/* Inputs */
+body:has(#softphonePanel.hnc-softphone-hidden)
+#MainPanelCustInfo input.customer-page,
+body:has(#softphonePanel.hnc-softphone-hidden)
+#MainPanelCustInfo select.customer-page,
+body:has(#softphonePanel.hnc-softphone-hidden)
+#MainPanelCustInfo textarea.customer-page {
+    min-height: 36px !important;
+    height: 36px !important;
+    padding: 6px 10px !important;
+
+/* Keep rows compact */
+body:has(#softphonePanel.hnc-softphone-hidden)
+#MainPanelCustInfo .bg-gray > .row {
+    margin-bottom: 2px !important;
+
+/* Contact section */
+body:has(#softphonePanel.hnc-softphone-hidden)
+#MainPanelCustInfo #comments {
+    min-height: 40px !important;
+
+/* Desktop: use the additional horizontal space */
+@media (min-width: 992px) {
+
+    body:has(#softphonePanel.hnc-softphone-hidden)
+    #MainPanelCustInfo .bg-gray > .row > .col-md-3 {
+        padding-left: 7px !important;
+        padding-right: 7px !important;
+
+
+
+
+
+#hncSoftphoneToggle {
+    top: 250px !important;
+    z-index: 99999 !important;
+
+
+#softphonePanel .page-wrap {
+    margin: 0 !important;
+    padding: 0 !important;
+
+
+
+#softphonePanel:has(#right-dialpad[style*="display: block"]) #webphoneSpan #webphonecontent {
+    display: none !important;
+
+
+/* HNC AGENT MODERN - Keep Header Clickable */
+.navbar,
+.navbar-fixed-top,
+.navbar-header,
+.navbar .navbar-nav,
+.navbar .navbar-right {
+    position: relative !important;
+    z-index: 10001 !important;
+
+.navbar .right-menu > li > a {
+    position: relative !important;
+    z-index: 10002 !important;
+    pointer-events: auto !important;
+
+#softphonePanel {
+    z-index: 9000 !important;
+
+
+
+
+#LogouTBox table {
+    position: relative !important;
+    z-index: 1000001 !important;
+

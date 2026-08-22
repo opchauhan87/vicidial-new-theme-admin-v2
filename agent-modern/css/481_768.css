@@ -1,0 +1,147 @@
+/*TransferMain,CallBackSelectBox*/
+body {
+    margin: 0 !important;
+    width: 100% !important;
+    display: inline-flex !important;
+    font-size: 9px !important;
+    overflow-y :scroll;
+    overflow-x: scroll !important;
+   
+}
+/*
+.texture .container.login-container .middle-login {
+	width: 100% !important;
+	padding: 0 15px  !important;
+    margin-left:0px !important;
+    margin-top: 100px !important;
+    left:0% !important;
+    position:relative !important;
+}
+
+
+.login-container .middle-login {
+	width: 100% !important;
+	padding: 0 15px  !important;
+    margin-left: -40px !important;
+    margin-top: 100px !important;
+    left:0% !important;
+    position:relative !important;
+}
+.login-container .middle-login {
+    width: 100% !important;
+    padding: 0 15px !important;
+    margin-left:0px !important;
+    margin-top: 100px !important;
+    left: 0% !important;
+    position: absolute !important;
+}
+
+.timeclock{
+	height: 30px !important;
+	display: inline-block;
+	position: absolute;
+}
+
+
+.container {
+    width: 100% !important;
+}
+
+
+
+.enjoy-css_cust {
+    display: inline-block !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    padding: 5px 0 !important;
+    border: 1px solid #631205 !important;
+    border-radius: 0px !important;
+    background: linear-gradient(to bottom, #A6230E, #A6230E) !important;
+    text-shadow: #696969 1px 1px 1px !important;
+    font: normal normal 7px arial !important;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    margin: 0px !important;
+    width: 35px !important;
+}
+.size {
+    font-size: 8px !important;
+}
+#DispoButtonHideC{
+width: 148px !important;
+height: 800px !important;
+}
+
+.l-t-r {
+    padding: 0px 0px 0px 0px !important;
+	}
+
+.cl-mcont{
+margin-left: 0% !important;
+}
+
+.cl-sidebar{
+ height:0px !important;
+ display: inline-block !important;
+}
+
+.table_bg{
+	margin-top: 20px !important;
+}
+.col-md-push-10 {
+    left: 80% !important;
+}
+#FSCREENWrapupBox{
+	height: 100px !important;
+	width: 100px !important;
+}
+#WrapupBox{
+	height: 100px !important;
+	width: 100px !important;
+	text-align: center !important;
+}
+#callsinqueuedisplay{
+	width: 76% !important;
+	left:142px !important;
+}
+#WelcomeBoxA{
+	height: 100px !important;
+	width: 100px !important;
+	text-align: center !important;
+}
+#ScriptPanel #NeWManuaLDiaLBox #CallBackSelectBox #ViewCommentsBox #CBcommentsBox #CallBacKsLisTBox #NeWManuaLDiaLBox #CalLLoGDisplaYBox #SearcHContactsDisplaYBox{
+	left : 140px !important;
+}
+#HotKeyActionBox{
+	top:21% !important;
+	left:160px !important;
+}
+#HotKeyActionBox table{
+	width:100% !important;
+}
+#TransferMain{
+	left:18% !important;
+	width:77% !important;
+}
+#AgentXferViewSpan{
+	top:0px !important;
+	left:18.7% !important;
+}
+.resp_width{
+	width:auto !important;
+}
+#SearcHContactsDisplaYBox{
+	width:76% !important;
+	left:87px !important;
+}
+#SearcHResultSContactsBox{
+	width:78% !important;
+	left:17% !important;
+}
+#InvalidOpenerSpan{
+	width:100% !important;
+}
+
+.enjoy-css_perrot, .size, .cl-mcont, table tbody td{
+	font-size:9px !important;
+}*/

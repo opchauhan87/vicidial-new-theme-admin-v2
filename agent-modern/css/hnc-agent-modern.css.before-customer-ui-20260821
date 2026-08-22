@@ -1,0 +1,379 @@
+/*
+ * HNC Smart CRM - Modern Agent Panel
+ *
+ * Development theme only.
+ * Existing VICIdial call logic is untouched.
+ */
+
+/* =========================================================
+   HNC AGENT THEME FOUNDATION
+   ========================================================= */
+
+:root {
+    --hnc-green-dark: #164b35;
+    --hnc-green: #167a50;
+    --hnc-green-soft: #e7f7ed;
+    --hnc-green-light: #f4faf6;
+
+    --hnc-text: #355944;
+    --hnc-text-muted: #719083;
+
+    --hnc-border: #dce9df;
+    --hnc-border-soft: #e8f1eb;
+
+    --hnc-white: #ffffff;
+
+    --hnc-radius: 10px;
+    --hnc-radius-small: 7px;
+
+    --hnc-shadow: 0 2px 10px rgba(25, 80, 55, 0.08);
+}
+
+/* Basic page foundation */
+
+html,
+body {
+    background: #f5faf7 !important;
+    color: var(--hnc-text) !important;
+}
+
+/* Modern typography */
+
+body,
+button,
+input,
+select,
+textarea {
+    font-family: "Montserrat", Arial, sans-serif !important;
+}
+
+/* Links */
+
+a {
+    color: var(--hnc-green) !important;
+}
+
+a:hover {
+    color: var(--hnc-green-dark) !important;
+}
+
+/* =========================================================
+   COMMON MODERN CARD
+   ========================================================= */
+
+.hnc-agent-card {
+    background: var(--hnc-white);
+    border: 1px solid var(--hnc-border);
+    border-radius: var(--hnc-radius);
+    box-shadow: var(--hnc-shadow);
+}
+
+/* =========================================================
+   FORM CONTROLS
+   ========================================================= */
+
+input,
+select,
+textarea {
+    border-color: var(--hnc-border) !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #9bc9ae !important;
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(22, 122, 80, 0.08) !important;
+}
+
+/* =========================================================
+   BUTTON FOUNDATION
+   ========================================================= */
+
+button,
+input[type="button"],
+input[type="submit"] {
+    border-radius: var(--hnc-radius-small);
+}
+
+/* =========================================================
+   SAFE DEVELOPMENT MARKER
+   ========================================================= */
+
+body::after {
+    content: "HNC AGENT MODERN";
+    position: fixed;
+    bottom: 6px;
+    right: 8px;
+    z-index: 99999;
+
+    padding: 3px 7px;
+    border-radius: 5px;
+
+    background: rgba(22, 122, 80, 0.08);
+    color: rgba(22, 122, 80, 0.55);
+
+    font-size: 8px;
+    font-weight: 600;
+    pointer-events: none;
+}
+
+/* =========================================================
+   HNC AGENT MODERN - HEADER
+   Phase 1 - Visual only
+   Existing VICIdial JS/functions untouched
+   ========================================================= */
+
+.navbar {
+    height: 64px !important;
+    min-height: 64px !important;
+    padding: 0 18px !important;
+
+    background: #ffffff !important;
+    border: 0 !important;
+    border-bottom: 1px solid var(--hnc-border) !important;
+
+    box-shadow: 0 2px 10px rgba(25, 80, 55, 0.06) !important;
+}
+
+.navbar .container-fluid {
+    height: 64px !important;
+    padding: 0 !important;
+}
+
+#main_header1 {
+    height: 64px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* Logo */
+
+.navbar-header.header-height {
+    height: 64px !important;
+    display: flex !important;
+    align-items: center !important;
+    min-width: 180px !important;
+}
+
+.navbar-header .navbar-brand {
+    padding: 8px 15px 8px 0 !important;
+    height: 64px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.navbar-header .navbar-brand img {
+    max-height: 42px !important;
+    width: auto !important;
+}
+
+/* Main status area */
+
+.header-ul {
+    height: 64px !important;
+    margin: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+
+    flex: 1 !important;
+}
+
+.header-ul > li {
+    position: static !important;
+    left: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Queue / callback status */
+
+.header-ul > li.color-blue {
+    padding: 7px 11px !important;
+
+    background: var(--hnc-green-light) !important;
+    border: 1px solid var(--hnc-border-soft) !important;
+    border-radius: var(--hnc-radius-small) !important;
+
+    color: var(--hnc-text) !important;
+
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    white-space: nowrap !important;
+}
+
+.header-ul .label {
+    margin-left: 4px !important;
+
+    background: var(--hnc-green-soft) !important;
+    color: var(--hnc-green-dark) !important;
+
+    border: 1px solid var(--hnc-border) !important;
+    border-radius: 12px !important;
+
+    font-size: 10px !important;
+    padding: 3px 7px !important;
+}
+
+/* Callback */
+
+#CallbacksButtons {
+    display: inline-block !important;
+
+    background: var(--hnc-green-soft) !important;
+    color: var(--hnc-green-dark) !important;
+
+    border: 1px solid var(--hnc-border) !important;
+    border-radius: 8px !important;
+
+    padding: 7px 10px !important;
+}
+
+#CBstatusSpan {
+    font-size: 10px !important;
+}
+
+/* Live call indicator */
+
+.header-ul img[name="livecall"] {
+    height: 30px !important;
+    width: auto !important;
+}
+
+/* Right menu */
+
+.right-menu {
+    height: 64px !important;
+    margin: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+}
+
+.right-menu > li,
+.right-menu > span {
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+}
+
+/* Dial / Call log */
+
+.right-menu img {
+    object-fit: contain !important;
+    transition: transform .15s ease, opacity .15s ease !important;
+}
+
+.right-menu a:hover img {
+    transform: translateY(-1px) !important;
+    opacity: .82 !important;
+}
+
+/* Power */
+
+.right-menu .fa-power-off {
+    color: var(--hnc-green) !important;
+    font-size: 23px !important;
+}
+
+/* WhatsApp */
+
+#whatsapp_header_btn {
+    width: 38px !important;
+    height: 38px !important;
+
+    padding: 5px !important;
+    border-radius: 50% !important;
+
+    border: 1px solid #ccebd8 !important;
+    box-shadow: 0 2px 7px rgba(25, 80, 55, .10) !important;
+}
+
+#whatsapp_header_btn img {
+    width: 25px !important;
+    height: 25px !important;
+}
+
+/* WhatsApp modal */
+
+#whatsapp_modal {
+    border: 1px solid var(--hnc-border) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 12px 35px rgba(25, 80, 55, .18) !important;
+}
+
+#whatsapp_box {
+    width: 100% !important;
+    height: 100% !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+}
+
+#whatsapp_header {
+    background: var(--hnc-green) !important;
+    padding: 11px 13px !important;
+}
+
+/* Header menu */
+
+.right-menu .dropdown-menu {
+    border: 1px solid var(--hnc-border) !important;
+    border-radius: 9px !important;
+
+    box-shadow: 0 8px 25px rgba(25, 80, 55, .12) !important;
+}
+
+.right-menu .dropdown-menu li a {
+    color: var(--hnc-text) !important;
+    font-size: 11px !important;
+    padding: 8px 12px !important;
+}
+
+.right-menu .dropdown-menu li a:hover {
+    background: var(--hnc-green-light) !important;
+    color: var(--hnc-green-dark) !important;
+}
+
+/* Hide old absolute positioning */
+
+#SecondSspan,
+#ParkCounterSpan {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        padding: 0 8px !important;
+    }
+
+    .navbar-header.header-height {
+        min-width: 120px !important;
+    }
+
+    .navbar-header .navbar-brand img {
+        max-height: 34px !important;
+    }
+
+    .header-ul {
+        gap: 4px !important;
+        overflow: hidden !important;
+    }
+
+    .header-ul > li.color-blue {
+        padding: 5px 7px !important;
+        font-size: 9px !important;
+    }
+
+    .right-menu {
+        gap: 2px !important;
+    }
+}
+

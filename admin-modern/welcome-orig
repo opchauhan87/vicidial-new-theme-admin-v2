@@ -1,0 +1,203 @@
+<meta charset="utf-8">
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+
+<!-- Bootstrap core CSS -->
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>	
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!--
+        <link href="css/style.css" rel="stylesheet" />
+	
+
+-->
+        <link href="../agent/css/style_new_theme.css" rel="stylesheet" />
+	<link href="css/stylehnc.css" rel="stylesheet" />
+<?php
+
+# welcome.php - VICIDIAL welcome page
+#
+# Copyright (C) 2023  Matt Florell <vicidial@gmail.com>    LICENSE: AGPLv2
+#
+# CHANGELOG:
+# 141007-2140 - Finalized adding QXZ translation to all admin files
+# 161106-1920 - Changed to use newer design and dynamic links
+# 220228-1109 - Added allow_web_debug system setting
+# 231119-1540 - Added HCI Screen link if hopper_hold_inserts are allowed on the system
+#
+
+require("dbconnect_mysqli.php");
+require("functions.php");
+
+#   see the options-example.php file for more information
+ if (file_exists('options.php'))
+ 	{
+	require('options.php');
+ 	}
+ 	
+$stmt = "SELECT use_non_latin,enable_queuemetrics_logging,enable_vtiger_integration,qc_features_active,outbound_autodial_active,sounds_central_control_active,enable_second_webform,user_territories_active,custom_fields_enabled,admin_web_directory,webphone_url,first_login_trigger,hosted_settings,default_phone_registration_password,default_phone_login_password,default_server_password,test_campaign_calls,active_voicemail_server,voicemail_timezones,default_voicemail_timezone,default_local_gmt,campaign_cid_areacodes_enabled,pllb_grouping_limit,did_ra_extensions_enabled,expanded_list_stats,contacts_enabled,alt_log_server_ip,alt_log_dbname,alt_log_login,alt_log_pass,tables_use_alt_log_db,call_menu_qualify_enabled,admin_list_counts,allow_voicemail_greeting,svn_revision,allow_emails,level_8_disable_add,pass_key,pass_hash_enabled,disable_auto_dial,country_code_list_stats,frozen_server_call_clear,active_modules,allow_chats,enable_languages,language_method,meetme_enter_login_filename,meetme_enter_leave3way_filename,enable_did_entry_list_id,enable_third_webform,default_language,user_hide_realtime_enabled,log_recording_access,alt_ivr_logging,admin_row_click,admin_screen_colors,ofcom_uk_drop_calc,agent_screen_colors,script_remove_js,manual_auto_next,user_new_lead_limit,agent_xfer_park_3way,agent_soundboards,web_loader_phone_length,agent_script,enable_auto_reports,enable_pause_code_limits,enable_drop_lists,allow_ip_lists,system_ip_blacklist,hide_inactive_lists,allow_manage_active_lists,expired_lists_inactive,did_system_filter,enable_gdpr_download_deletion,mute_recordings,user_admin_redirect,list_status_modification_confirmation,sip_event_logging,call_quota_lead_ranking,enable_second_script,enable_first_webform,recording_buttons,hopper_hold_inserts FROM system_settings;";
+$rslt=mysql_to_mysqli($stmt, $link);
+if ($DB) {echo "$stmt\n";}
+$qm_conf_ct = mysqli_num_rows($rslt);
+if ($qm_conf_ct > 0)
+	{
+	$row=mysqli_fetch_row($rslt);
+	
+	$non_latin =							$row[0];
+	$SSenable_queuemetrics_logging =		$row[1];
+	$SSenable_vtiger_integration =			$row[2];
+	$SSqc_features_active =					$row[3];
+	$SSoutbound_autodial_active =			$row[4];
+	$SSsounds_central_control_active =		$row[5];
+	$SSenable_second_webform =				$row[6];
+	$SSuser_territories_active =			$row[7];
+	$SScustom_fields_enabled =				$row[8];
+	$SSadmin_web_directory =				$row[9];
+	$SSwebphone_url =						$row[10];
+	$SSfirst_login_trigger =				$row[11];
+	$SShosted_settings =					$row[12];
+	$SSdefault_phone_registration_password =$row[13];
+	$SSdefault_phone_login_password =		$row[14];
+	$SSdefault_server_password =			$row[15];
+	$SStest_campaign_calls =				$row[16];
+	$SSactive_voicemail_server =			$row[17];
+	$SSvoicemail_timezones =				$row[18];
+	$SSdefault_voicemail_timezone =			$row[19];
+	$SSdefault_local_gmt =					$row[20];
+	$SScampaign_cid_areacodes_enabled =		$row[21];
+	$SSpllb_grouping_limit =				$row[22];
+	$SSdid_ra_extensions_enabled =			$row[23];
+	$SSexpanded_list_stats =				$row[24];
+	$SScontacts_enabled =					$row[25];
+	$SSalt_log_server_ip =					$row[26];
+	$SSalt_log_dbname =						$row[27];
+	$SSalt_log_login =						$row[28];
+	$SSalt_log_pass =						$row[29];
+	$SStables_use_alt_log_db =				$row[30];
+	$SScall_menu_qualify_enabled =			$row[31];
+	$SSadmin_list_counts =					$row[32];
+	$SSallow_voicemail_greeting =			$row[33];
+	$SSsvn_revision =						$row[34];
+	$SSallow_emails =						$row[35];
+	$SSlevel_8_disable_add =				$row[36];
+	$SSpass_key =							$row[37];
+	$SSpass_hash_enabled =					$row[38];
+	$SSdisable_auto_dial =					$row[39];
+	$SScountry_code_list_stats =			$row[40];
+	$SSfrozen_server_call_clear =			$row[41];
+	$SSactive_modules =						$row[42];
+	$SSallow_chats =						$row[43];
+	$SSenable_languages =					$row[44];
+	$SSlanguage_method =					$row[45];
+	$SSmeetme_enter_login_filename =		$row[46];
+	$SSmeetme_enter_leave3way_filename =	$row[47];
+	$SSenable_did_entry_list_id =			$row[48];
+	$SSenable_third_webform =				$row[49];
+	$SSdefault_language =					$row[50];
+	$SSuser_hide_realtime_enabled =			$row[51];
+	$SSlog_recording_access =				$row[52];
+	$SSalt_ivr_logging =					$row[53];
+	$SSadmin_row_click =					$row[54];
+	$SSadmin_screen_colors =				$row[55];
+	$SSofcom_uk_drop_calc =					$row[56];
+	$SSagent_screen_colors =				$row[57];
+	$SSscript_remove_js =					$row[58];
+	$SSmanual_auto_next =					$row[59];
+	$SSuser_new_lead_limit =				$row[60];
+	$SSagent_xfer_park_3way =				$row[61];
+	$SSagent_soundboards =					$row[62];
+	$SSweb_loader_phone_length =			$row[63];
+	$SSagent_script =						$row[64];
+	$SSenable_auto_reports =				$row[65];
+	$SSenable_pause_code_limits =			$row[66];
+	$SSenable_drop_lists =					$row[67];
+	$SSallow_ip_lists =						$row[68];
+	$SSsystem_ip_blacklist =				$row[69];
+	$SShide_inactive_lists =				$row[70];
+	$SSallow_manage_active_lists =			$row[71];
+	$SSexpired_lists_inactive =				$row[72];
+	$SSdid_system_filter =					$row[73];
+	$SSenable_gdpr_download_deletion =		$row[74];
+	$SSmute_recordings =					$row[75];
+	$SSuser_admin_redirect =				$row[76];
+	$SSlist_status_modification_confirmation =	$row[77];
+	$SSsip_event_logging =					$row[78];
+	$SScall_quota_lead_ranking =			$row[79];
+	$SSenable_second_script =				$row[80];
+	$SSenable_first_webform =				$row[81];
+	$SSrecording_buttons =					$row[82];
+	$SShopper_hold_inserts =					$row[83];
+	}
+$PHP_AUTH_USER=$_SERVER['PHP_AUTH_USER'];
+$stmt="SELECT selected_language,user_admin_redirect_url from vicidial_users where user='$PHP_AUTH_USER';";
+if ($DB) {echo "|$stmt|\n";}
+$rslt=mysql_to_mysqli($stmt, $link);
+$sl_ct = mysqli_num_rows($rslt);
+if ($sl_ct > 0)
+	{
+	$row=mysqli_fetch_row($rslt);
+	$VUselected_language =		$row[0];
+	$VUuser_admin_redirect_url = $row[1];
+	}
+
+
+
+
+echo '<div class="login-card">';
+
+    // Welcome Banner
+    echo '<div class="banner-header">';
+        echo 'Welcome to HN Connect';
+    echo '</div>';
+
+    // Login Body
+    echo '<div class="login-body">';
+        echo '<img src="logoHNC.png" alt="HN Connect Logo" class="logo">';
+        echo '<h3>HN Connect</h3>';
+        echo '<p class="tagline">Seamless Communication. Smart Future.</p>';
+
+        echo '<form method="post" action="">';
+
+            echo '<div class="mb-1 text-start">';
+                echo '<button type="button" class="btn btn-primary w-100" onclick="window.location.href=\'../admin/admin.php\'">ADMIN</button>';
+            echo '</div>';
+
+            echo '<div class="mb-1 text-start">';
+                echo '<button type="button" class="btn btn-primary w-100" onclick="window.location.href=\'../agent/index.php\'">AGENT</button>';
+            echo '</div>';
+
+            echo '<div class="mb-1 text-start">';
+                echo '<button type="button" class="btn btn-primary w-100" onclick="window.location.href=\'../agent/timeclock.php\'">TIME CLOCK</button>';
+            echo '</div>';
+
+        echo '</form>';
+
+        // WhatsApp Support
+        echo '<div class="whatsapp">';
+            echo '<a href="https://wa.me/919679735404" target="_blank">';
+                echo '<img src="WhatsApp.svg" alt="WhatsApp Support">';
+            echo '</a>';
+	   
+
+            echo '<p style="font-size:0.85rem; margin-top:5px;">Chat with us on WhatsApp</p>';
+		
+	    echo '<p style="font-size:1.00rem; margin-top:5px;">Email-dialerstreet@gmail.com.com</p>';
+
+        echo '</div>';
+
+    echo '</div>';
+
+    // Footer
+    echo '<div class="banner-footer">';
+        echo '&copy; 2025 HN Connect. All Rights Reserved.';
+		echo '<br>';
+	echo 'Contact us-+9196-7973-5404.';
+    echo '</div>';
+
+echo '</div>';
+?>

@@ -1,0 +1,160 @@
+/* 1920*1080*/
+/*Remaining
+ * HotKeyActionBox,PresetsSelectBox
+ * */
+body{
+	/*overflow-x : hidden !important;*/
+	overflow-x : auto !important;
+}
+.texture .login-container .middle-login{
+	/*top:10% !important;*/
+}
+.container{
+	width:100% !important;
+}
+#AgentViewSpan{
+	/*min-width : 17.4% !important;*/
+}
+.col-md-push-2{
+	left:6.667% !important;
+}
+/*#FSCREENWrapupBox table, #WrapupBox table, #WelcomeBoxA table,#SysteMDisablEBoX table,#TerritorySelectBox table{
+	width:1914px !important;
+}*/
+#AgentXferViewSpan{
+	top : 0px !important;
+	/*left:16% !important;*/
+}
+#SearcHContactsDisplaYBox{
+	/*left: 19% !important;
+	width: 74.5% !important;*/
+}
+#SearcHResultSContactsBox{
+	/*left: 19% !important;
+	width: 74.5% !important;*/
+}
+#InvalidOpenerSpan{
+	width: 19.5% !important;
+}
+#DispoButtonHideC{
+	width: 20% !important;
+}
+#FormRefresH{
+	left : 93% !important;
+}
+#MaiNfooterspan{
+	top: 1035px !important;
+}
+#HotKeyActionBox{
+	top: 0 !important;
+	left: 0% !important;
+}
+#HotKeyActionBox table{
+/*
+	width:451px !important;
+	height:124px !important;
+*/
+}
+#DispoSelectBox ul{
+	width:100% !important;
+}
+#DispoSelectBox ul div{
+	width:100% !important;
+}
+#SearcHForMDisplaYBox{
+	/*width:74% !important;*/
+	width:100% !important;
+}
+/*ishwari
+ 02-Apr-20*/
+#DiaLControl a,#RecorDControl a,#XferControl a,#HangupControl a,#CallLogButtons a,#CBstatusSpan 
+a,#PauseCodeLinkSpan a,#lead a,#QuickXfer a,#ReQueueCall a,#CallLogLinkSpan a,#territories_span a,#dial_leads a,#altphonespan a,#skipspan a,#CustomXfer a,#hotkeysdisplay a{
+	/*width : 100% !important;*/
+}
+
+
+#NexTCalLPausE a,#ManuaLDiaLButtons div 
+a{
+	width : 100% !important;
+}
+
+#WebFormSpan a,#WebFormSpanTwo a,#WebFormSpanThree a,#ParkControl a,#ivrParkControl a,#SendDTMF a,#CallLogLinkSpan a,#AgentAlertSpan a{
+/*
+	width:100% !important;
+*/
+}
+
+.login-container .middle-login{
+	/*left:37% !important;*/
+}
+#dialableleadsspan{
+/*
+	left:66% !important;
+*/
+	top:83% !important
+}
+#CustomerGoneBox,#TimerSpan,#CBcommentsBox,#CalLLoGDisplaYBox,#SearcHContactsDisplaYBox,#SearcHResultSContactsBox,
+#SearcHResultSDisplaYBox,#CalLNotesDisplaYBox,#LeaDInfOBox,#PresetsSelectBox,#GroupAliasSelectBox,
+#DiaLInGrouPSelectBox,#TransferMain,#NeWManuaLDiaLBox,#PauseCodeSelectBox,#CallBacKsLisTBox
+{
+	top:0px !important;
+}
+.tablewidth{
+	width:100% !important;
+/*
+	height:1000px !important;
+*/
+	height:1737px !important;
+}
+#CallBackSelectBox{
+	width:100% !important;
+	left:0px !important;
+}
+#DispoSelectBox{
+	width:100% !important;
+}
+#call_notes_dispo{
+	width:48% !important;
+}
+.navbar-default .navbar-nav > li.button{
+	height:30px !important;
+}
+.li_padding{
+	padding:0px !important;
+}
+#main_section2{
+	height:810px !important;
+}
+iframe{
+/*
+	height:622px !important;
+*/
+}
+
+.middleheight{
+	height:806px !important;
+}
+.callwidth{
+	width:1120px !important;
+}
+.middlewidth{
+	width:34.5% !important;
+}
+.emailwidth{
+	width: 58% !important;
+}
+
+#ScriptRefresH{
+	/*left: 29% !important;*/
+}
+#middle_line{
+	/*padding-right: 460px !important;*/
+}
+#commentcustom{
+	width: 150px !important;
+	height: 80px !important;
+}
+#callpopup{
+	margin-top:8% !important;
+	margin-left:12.5% !important;
+}
