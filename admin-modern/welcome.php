@@ -1,788 +1,1011 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="Pragma" content="no-cache">
-  <title>HN Connect · AI Login</title>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="theme-color" content="#0b5d3b">
+<meta name="robots" content="noindex,nofollow">
 
-  <!-- Bootstrap 5 + Icons + Google Font -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>HNC Connect · AI Portal</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background: #f4f8f5;
+    color: #173c2c;
+    overflow: hidden;
+}
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.hnc-page {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 620px;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 8% 10%, rgba(90,190,130,.16), transparent 27%),
+        radial-gradient(circle at 92% 85%, rgba(100,190,140,.14), transparent 30%),
+        linear-gradient(135deg, #f8fcf9 0%, #eef7f1 100%);
+}
+
+.hnc-page::before {
+    content: "";
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    left: -330px;
+    bottom: -360px;
+    border: 1px solid rgba(22,128,82,.08);
+    border-radius: 50%;
+    box-shadow:
+        0 0 0 70px rgba(22,128,82,.025),
+        0 0 0 140px rgba(22,128,82,.018);
+}
+
+.hnc-page::after {
+    content: "";
+    position: absolute;
+    width: 520px;
+    height: 520px;
+    right: -270px;
+    top: -280px;
+    border: 1px solid rgba(22,128,82,.08);
+    border-radius: 50%;
+    box-shadow:
+        0 0 0 60px rgba(22,128,82,.025),
+        0 0 0 120px rgba(22,128,82,.015);
+}
+
+/* =========================================================
+   TOP BAR
+   ========================================================= */
+
+.hnc-topbar {
+    position: relative;
+    z-index: 5;
+
+    height: 76px;
+    padding: 0 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: rgba(255,255,255,.88);
+    border-bottom: 1px solid #dceae2;
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.hnc-brand {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.hnc-brand-logo {
+    height: 42px;
+    width: 132px;
+
+    object-fit: contain;
+    object-position: left center;
+}
+
+.hnc-brand-divider {
+    width: 1px;
+    height: 28px;
+    background: #d5e5dc;
+}
+
+.hnc-brand-text {
+    font-size: 12px;
+    font-weight: 600;
+    color: #668073;
+    letter-spacing: .3px;
+}
+
+.hnc-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 9px 14px;
+
+    background: #eff9f3;
+    border: 1px solid #d7eee0;
+    border-radius: 30px;
+
+    color: #267149;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .4px;
+    text-transform: uppercase;
+}
+
+.hnc-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #20b76b;
+
+    box-shadow: 0 0 0 4px rgba(32,183,107,.12);
+}
+
+/* =========================================================
+   MAIN LAYOUT
+   ========================================================= */
+
+.hnc-main {
+    position: relative;
+    z-index: 2;
+
+    height: calc(100vh - 76px);
+
+    display: grid;
+    grid-template-columns: minmax(400px, .85fr) minmax(520px, 1.15fr);
+
+    max-width: 1380px;
+    margin: 0 auto;
+
+    padding: 48px 55px 38px;
+
+    gap: 70px;
+}
+
+/* =========================================================
+   LEFT BRAND AREA
+   ========================================================= */
+
+.hnc-hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+
+.hnc-ai-label {
+    width: fit-content;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 8px 13px;
+
+    border-radius: 30px;
+
+    background: #eaf8f0;
+    border: 1px solid #ccebd8;
+
+    color: #197a4e;
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    margin-bottom: 25px;
+}
+
+.hnc-ai-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #20b76b;
+
+    box-shadow: 0 0 0 4px rgba(32,183,107,.10);
+}
+
+.hnc-hero-logo {
+    width: min(320px, 70%);
+    max-height: 130px;
+
+    object-fit: contain;
+    object-position: left center;
+
+    margin-bottom: 28px;
+
+    filter: drop-shadow(0 12px 22px rgba(20,80,55,.12));
+}
+
+.hnc-hero h1 {
+    margin: 0;
+
+    font-size: clamp(42px, 5vw, 70px);
+    line-height: .98;
+
+    font-weight: 800;
+    letter-spacing: -3px;
+
+    color: #14553c;
+}
+
+.hnc-hero h1 span {
+    display: block;
+    color: #79bd36;
+}
+
+.hnc-hero-description {
+    max-width: 520px;
+
+    margin: 23px 0 0;
+
+    font-size: 16px;
+    line-height: 1.7;
+
+    color: #6b8276;
+}
+
+.hnc-hero-description strong {
+    color: #245b40;
+}
+
+.hnc-feature-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+
+    margin-top: 28px;
+}
+
+.hnc-feature {
+    padding: 9px 13px;
+
+    background: rgba(255,255,255,.72);
+
+    border: 1px solid #dceae2;
+    border-radius: 9px;
+
+    color: #507063;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* =========================================================
+   RIGHT ACCESS AREA
+   ========================================================= */
+
+.hnc-access {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hnc-access-inner {
+    width: 100%;
+    max-width: 620px;
+}
+
+/* Header */
+
+.hnc-access-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+}
+
+.hnc-access-title h2 {
+    margin: 0;
+
+    color: #173c2c;
+
+    font-size: 27px;
+    line-height: 1.2;
+    font-weight: 800;
+
+    letter-spacing: -.8px;
+}
+
+.hnc-access-title p {
+    margin: 6px 0 0;
+
+    color: #789086;
+
+    font-size: 12px;
+}
+
+.hnc-access-badge {
+    padding: 7px 10px;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+    border: 1px solid #dceae2;
+
+    color: #6b8176;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+/* =========================================================
+   ACCESS TILES
+   ========================================================= */
+
+.hnc-roles {
+    display: grid;
+    gap: 12px;
+}
+
+.hnc-role {
+    position: relative;
+
+    width: 100%;
+    min-height: 92px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 16px 20px;
+
+    border: 1px solid #dceae2;
+    border-radius: 17px;
+
+    background: rgba(255,255,255,.92);
+
+    box-shadow:
+        0 6px 20px rgba(24,76,53,.045);
+
+    color: #173c2c;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition:
+        transform .18s ease,
+        border-color .18s ease,
+        box-shadow .18s ease,
+        background .18s ease;
+}
+
+.hnc-role:hover {
+    transform: translateY(-3px);
+
+    border-color: #9bd5b4;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 14px 30px rgba(24,76,53,.10);
+}
+
+.hnc-role:active {
+    transform: translateY(-1px);
+}
+
+.hnc-role-icon {
+    width: 52px;
+    height: 52px;
+
+    flex: 0 0 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: #eaf8f0;
+    color: #168052;
+
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.hnc-role-content {
+    min-width: 0;
+    padding-left: 16px;
+}
+
+.hnc-role-title {
+    display: block;
+
+    color: #245b40;
+
+    font-size: 16px;
+    font-weight: 800;
+
+    letter-spacing: .1px;
+}
+
+.hnc-role-description {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #7a8e83;
+
+    font-size: 11px;
+}
+
+.hnc-role-arrow {
+    margin-left: auto;
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f3f9f5;
+
+    color: #77a28c;
+
+    font-size: 17px;
+
+    transition:
+        background .18s ease,
+        color .18s ease,
+        transform .18s ease;
+}
+
+.hnc-role:hover .hnc-role-arrow {
+    background: #e6f5ed;
+    color: #168052;
+    transform: translateX(3px);
+}
+
+/* =========================================================
+   QUICK INFO
+   ========================================================= */
+
+.hnc-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-top: 17px;
+
+    padding: 12px 14px;
+
+    background: #f7fbf8;
+    border: 1px solid #e2eee7;
+    border-radius: 11px;
+
+    color: #6e8479;
+
+    font-size: 10px;
+}
+
+.hnc-info-icon {
+    width: 24px;
+    height: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 7px;
+
+    background: #e3f4ea;
+
+    color: #168052;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.hnc-footer {
+    position: absolute;
+
+    left: 55px;
+    bottom: 22px;
+
+    color: #8aa097;
+
+    font-size: 10px;
+}
+
+.hnc-footer strong {
+    color: #5d786b;
+}
+
+/* =========================================================
+   AI FLOATING BUTTON
+   ========================================================= */
+
+.hnc-ai-button {
+    position: fixed;
+
+    right: 27px;
+    bottom: 24px;
+
+    z-index: 50;
+
+    width: 54px;
+    height: 54px;
+
+    border: 0;
+    border-radius: 17px;
+
+    background:
+        linear-gradient(145deg, #78c837, #138052);
+
+    color: #ffffff;
+
+    font-size: 21px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 12px 28px rgba(22,128,82,.28),
+        0 0 0 6px rgba(22,128,82,.07);
+
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease;
+}
+
+.hnc-ai-button:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 17px 32px rgba(22,128,82,.34),
+        0 0 0 8px rgba(22,128,82,.08);
+}
+
+.hnc-ai-button::after {
+    content: "AI Assistant";
+
+    position: absolute;
+
+    right: 65px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    padding: 7px 10px;
+
+    border-radius: 8px;
+
+    background: #173c2c;
+    color: #ffffff;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition: opacity .18s ease;
+}
+
+.hnc-ai-button:hover::after {
+    opacity: 1;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1050px) {
 
     body {
-      font-family: 'Space Grotesk', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-      margin: 0;
-      background: #0a0e1a;
-      overflow: hidden;
+        overflow: auto;
     }
 
-    /* Animated background particles */
-    .bg-particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      background: 
-        radial-gradient(ellipse at 20% 50%, rgba(72, 49, 212, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 50%, rgba(0, 200, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 100%, rgba(120, 50, 200, 0.08) 0%, transparent 50%);
+    .hnc-page {
+        height: auto;
+        min-height: 100vh;
+        overflow: visible;
     }
 
-    .bg-particles::before {
-      content: '';
-      position: absolute;
-      width: 200%;
-      height: 200%;
-      top: -50%;
-      left: -50%;
-      background-image: 
-        radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.1), transparent),
-        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.08), transparent),
-        radial-gradient(2px 2px at 50px 160px, rgba(255,255,255,0.12), transparent),
-        radial-gradient(2px 2px at 90px 40px, rgba(255,255,255,0.06), transparent),
-        radial-gradient(2px 2px at 130px 80px, rgba(255,255,255,0.1), transparent),
-        radial-gradient(2px 2px at 160px 30px, rgba(255,255,255,0.07), transparent);
-      background-size: 200px 200px;
-      animation: floatParticles 20s linear infinite;
-      opacity: 0.5;
+    .hnc-main {
+        height: auto;
+
+        grid-template-columns: 1fr;
+
+        padding: 45px 30px 80px;
+
+        gap: 40px;
     }
 
-    @keyframes floatParticles {
-      0% { transform: translate(0, 0) rotate(0deg); }
-      100% { transform: translate(-50px, -30px) rotate(5deg); }
+    .hnc-hero {
+        padding-left: 0;
+        align-items: center;
+        text-align: center;
     }
 
-    /* Glowing orbs */
-    .glow-orb {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(80px);
-      z-index: 0;
-    }
-    .glow-orb-1 {
-      width: 400px;
-      height: 400px;
-      background: rgba(72, 49, 212, 0.2);
-      top: -100px;
-      right: -100px;
-      animation: orbFloat 8s ease-in-out infinite;
-    }
-    .glow-orb-2 {
-      width: 300px;
-      height: 300px;
-      background: rgba(0, 200, 255, 0.15);
-      bottom: -50px;
-      left: -50px;
-      animation: orbFloat 10s ease-in-out infinite reverse;
-    }
-    .glow-orb-3 {
-      width: 200px;
-      height: 200px;
-      background: rgba(255, 100, 200, 0.1);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      animation: orbFloat 12s ease-in-out infinite;
+    .hnc-hero-logo {
+        object-position: center;
     }
 
-    @keyframes orbFloat {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(30px, -30px) scale(1.1); }
+    .hnc-hero-description {
+        margin-left: auto;
+        margin-right: auto;
     }
 
-    .login-container {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 520px;
+    .hnc-feature-row {
+        justify-content: center;
     }
 
-    /* Main card - completely different design */
-    .ai-card {
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(40px) saturate(200%);
-      -webkit-backdrop-filter: blur(40px) saturate(200%);
-      border-radius: 32px;
-      padding: 2.8rem 2.5rem 2.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      box-shadow: 
-        0 40px 80px rgba(0, 0, 0, 0.6),
-        0 0 0 1px rgba(255, 255, 255, 0.03) inset,
-        0 0 40px rgba(72, 49, 212, 0.05);
-      position: relative;
-      overflow: hidden;
+    .hnc-footer {
+        position: static;
+        text-align: center;
+        padding: 0 20px 25px;
+    }
+}
+
+@media (max-width: 650px) {
+
+    .hnc-topbar {
+        height: 64px;
+        padding: 0 18px;
     }
 
-    /* AI gradient line */
-    .ai-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, #4831d4, #00c8ff, #ff64c8, #4831d4);
-      background-size: 300% 100%;
-      animation: gradientMove 4s ease-in-out infinite;
+    .hnc-brand-logo {
+        width: 105px;
+        height: 34px;
     }
 
-    @keyframes gradientMove {
-      0%, 100% { background-position: 0% 0%; }
-      50% { background-position: 100% 0%; }
+    .hnc-brand-divider,
+    .hnc-brand-text {
+        display: none;
     }
 
-    /* AI chip badge */
-    .ai-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(72, 49, 212, 0.15);
-      border: 1px solid rgba(72, 49, 212, 0.2);
-      padding: 0.3rem 1rem 0.3rem 0.8rem;
-      border-radius: 100px;
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
+    .hnc-status {
+        padding: 7px 10px;
+        font-size: 9px;
     }
 
-    .ai-badge .pulse-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #00c8ff;
-      animation: pulseDot 2s ease-in-out infinite;
-      display: inline-block;
+    .hnc-main {
+        padding: 32px 18px 55px;
+        gap: 32px;
     }
 
-    @keyframes pulseDot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.3; transform: scale(0.7); }
+    .hnc-hero h1 {
+        font-size: 43px;
+        letter-spacing: -2px;
     }
 
-    .brand-section {
-      text-align: center;
-      margin-bottom: 2.5rem;
+    .hnc-hero-logo {
+        width: 220px;
+        margin-bottom: 20px;
     }
 
-    .logo-container {
-      width: 100px;
-      height: 100px;
-      margin: 0 auto 1rem;
-      border-radius: 28px;
-      background: linear-gradient(135deg, rgba(72, 49, 212, 0.2), rgba(0, 200, 255, 0.1));
-      padding: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-      position: relative;
+    .hnc-hero-description {
+        font-size: 13px;
     }
 
-    .logo-container::after {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      border-radius: 30px;
-      padding: 2px;
-      background: linear-gradient(135deg, rgba(72, 49, 212, 0.3), rgba(0, 200, 255, 0.2));
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
+    .hnc-access-title h2 {
+        font-size: 22px;
     }
 
-    .logo-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+    .hnc-access-heading {
+        align-items: flex-start;
+        gap: 10px;
     }
 
-    .brand-title-ai {
-      font-size: 2.4rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #ffffff 0%, #a0c4ff 50%, #7abfff 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.25rem;
+    .hnc-access-badge {
+        display: none;
     }
 
-    .brand-sub {
-      color: rgba(255, 255, 255, 0.4);
-      font-size: 0.85rem;
-      font-weight: 400;
-      letter-spacing: 0.3px;
+    .hnc-role {
+        min-height: 82px;
+        padding: 13px;
     }
 
-    .brand-sub span {
-      color: rgba(0, 200, 255, 0.6);
+    .hnc-role-icon {
+        width: 45px;
+        height: 45px;
+        flex-basis: 45px;
     }
 
-    /* Role buttons - completely different style */
-    .role-grid {
-      display: grid;
-      gap: 1rem;
-      margin: 1.8rem 0;
+    .hnc-role-content {
+        padding-left: 12px;
     }
 
-    .role-btn {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 0.9rem 1.5rem;
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      color: rgba(255, 255, 255, 0.8);
-      font-weight: 500;
-      font-size: 1rem;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      cursor: pointer;
-      width: 100%;
-      text-align: left;
-      position: relative;
-      overflow: hidden;
-      font-family: 'Space Grotesk', sans-serif;
+    .hnc-role-title {
+        font-size: 14px;
     }
 
-    .role-btn::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 16px;
-      padding: 1px;
-      background: linear-gradient(135deg, rgba(72, 49, 212, 0.2), rgba(0, 200, 255, 0.1));
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.3s;
+    .hnc-role-description {
+        font-size: 10px;
     }
 
-    .role-btn:hover::before {
-      opacity: 1;
-    }
-
-    .role-btn:hover {
-      background: rgba(255, 255, 255, 0.06);
-      border-color: rgba(255, 255, 255, 0.1);
-      transform: translateY(-2px) scale(1.01);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
-      color: white;
-    }
-
-    .role-btn:active {
-      transform: scale(0.97);
-    }
-
-    .role-btn .icon-box {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      flex-shrink: 0;
-      transition: all 0.3s;
-    }
-
-    .role-btn .icon-box.admin {
-      background: rgba(72, 49, 212, 0.2);
-      color: #7a5cff;
-    }
-    .role-btn .icon-box.agent {
-      background: rgba(0, 200, 255, 0.15);
-      color: #00c8ff;
-    }
-    .role-btn .icon-box.clock {
-      background: rgba(255, 100, 200, 0.15);
-      color: #ff64c8;
-    }
-
-    .role-btn:hover .icon-box.admin {
-      background: rgba(72, 49, 212, 0.3);
-      box-shadow: 0 0 30px rgba(72, 49, 212, 0.15);
-    }
-    .role-btn:hover .icon-box.agent {
-      background: rgba(0, 200, 255, 0.25);
-      box-shadow: 0 0 30px rgba(0, 200, 255, 0.15);
-    }
-    .role-btn:hover .icon-box.clock {
-      background: rgba(255, 100, 200, 0.25);
-      box-shadow: 0 0 30px rgba(255, 100, 200, 0.15);
-    }
-
-    .role-btn .btn-label {
-      flex: 1;
-    }
-    .role-btn .btn-label small {
-      display: block;
-      font-size: 0.7rem;
-      color: rgba(255, 255, 255, 0.3);
-      font-weight: 400;
-      margin-top: 0.1rem;
-    }
-
-    .role-btn .arrow-icon {
-      opacity: 0.3;
-      transition: all 0.3s;
-      font-size: 0.9rem;
-    }
-    .role-btn:hover .arrow-icon {
-      opacity: 1;
-      transform: translateX(4px);
-      color: #00c8ff;
-    }
-
-    /* Divider with AI text */
-    .ai-divider {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin: 1.8rem 0 1.5rem;
-    }
-
-    .ai-divider .line {
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
-    }
-
-    .ai-divider .ai-text {
-      color: rgba(255, 255, 255, 0.2);
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .ai-divider .ai-text .sparkle {
-      display: inline-block;
-      animation: sparkle 2s ease-in-out infinite;
-    }
-
-    @keyframes sparkle {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 1; }
-    }
-
-    /* WhatsApp section - new style */
-    .connect-section {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 0.8rem;
-      padding: 0.8rem 1.2rem;
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.03);
-    }
-
-    .wa-link {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      color: rgba(255, 255, 255, 0.6);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.9rem;
-      transition: all 0.3s;
-      padding: 0.3rem 0.8rem;
-      border-radius: 100px;
-    }
-
-    .wa-link:hover {
-      color: white;
-      background: rgba(37, 211, 102, 0.1);
-    }
-
-    .wa-link img {
-      width: 24px;
-      height: 24px;
-    }
-
-    .contact-chip {
-      color: rgba(255, 255, 255, 0.25);
-      font-size: 0.75rem;
-      padding: 0.2rem 1rem;
-      border-radius: 100px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.03);
-    }
-
-    .contact-chip i {
-      margin-right: 4px;
-    }
-
-    /* Footer */
-    .footer-ai {
-      margin-top: 2rem;
-      text-align: center;
-      color: rgba(255, 255, 255, 0.12);
-      font-size: 0.7rem;
-      letter-spacing: 0.3px;
-      line-height: 1.8;
-    }
-
-    .footer-ai strong {
-      color: rgba(255, 255, 255, 0.2);
-      font-weight: 500;
-    }
-
-    .footer-ai .phone-link {
-      color: rgba(255, 255, 255, 0.15);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    .footer-ai .phone-link:hover {
-      color: rgba(255, 255, 255, 0.3);
-    }
-
-    /* AI assistant floating indicator */
-    .ai-assistant {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #4831d4, #00c8ff);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1.4rem;
-      box-shadow: 0 8px 32px rgba(72, 49, 212, 0.3);
-      cursor: pointer;
-      z-index: 100;
-      border: none;
-      transition: all 0.3s;
-      animation: floatBtn 3s ease-in-out infinite;
-    }
-
-    .ai-assistant:hover {
-      transform: scale(1.1);
-      box-shadow: 0 12px 48px rgba(72, 49, 212, 0.5);
-    }
-
-    @keyframes floatBtn {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
-    }
-
-    .ai-assistant .tooltip-bubble {
-      position: absolute;
-      bottom: 70px;
-      right: 0;
-      background: rgba(0,0,0,0.8);
-      backdrop-filter: blur(12px);
-      padding: 0.5rem 1rem;
-      border-radius: 12px;
-      font-size: 0.7rem;
-      color: rgba(255,255,255,0.7);
-      white-space: nowrap;
-      border: 1px solid rgba(255,255,255,0.05);
-      opacity: 0;
-      transform: translateY(10px);
-      transition: all 0.3s;
-      pointer-events: none;
-    }
-
-    .ai-assistant:hover .tooltip-bubble {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 480px) {
-      .ai-card {
-        padding: 2rem 1.5rem 2rem;
-        border-radius: 24px;
-      }
-      .brand-title-ai {
-        font-size: 1.8rem;
-      }
-      .logo-container {
-        width: 80px;
-        height: 80px;
-        padding: 12px;
-      }
-      .role-btn {
-        padding: 0.7rem 1.2rem;
-        font-size: 0.9rem;
-      }
-      .role-btn .icon-box {
-        width: 38px;
-        height: 38px;
-        font-size: 1rem;
-      }
-      .ai-assistant {
+    .hnc-ai-button {
+        right: 16px;
+        bottom: 16px;
         width: 48px;
         height: 48px;
-        font-size: 1.2rem;
-        bottom: 1rem;
-        right: 1rem;
-      }
-      .connect-section {
-        flex-direction: column;
-        align-items: stretch;
-        text-align: center;
-        gap: 0.5rem;
-      }
-      .wa-link {
-        justify-content: center;
-      }
     }
+}
 
-    /* ========================================
-       HN CONNECT MODERN LIGHT-GREEN THEME
-       ======================================== */
-    body {
-      background: #f4faf6 !important;
-      color: #294f3d !important;
-      overflow-x: hidden !important;
-      overflow-y: auto !important;
-    }
-
-    .bg-particles {
-      background:
-        radial-gradient(ellipse at 15% 50%, rgba(47, 174, 112, 0.10) 0%, transparent 50%),
-        radial-gradient(ellipse at 85% 40%, rgba(28, 184, 126, 0.08) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 100%, rgba(111, 190, 140, 0.08) 0%, transparent 50%) !important;
-    }
-
-    .bg-particles::before {
-      background-image:
-        radial-gradient(2px 2px at 20px 30px, rgba(44, 126, 82, 0.10), transparent),
-        radial-gradient(2px 2px at 40px 70px, rgba(44, 126, 82, 0.08), transparent),
-        radial-gradient(2px 2px at 90px 40px, rgba(44, 126, 82, 0.06), transparent) !important;
-      opacity: .35 !important;
-    }
-
-    .glow-orb {
-      filter: blur(90px) !important;
-    }
-
-    .glow-orb-1 {
-      background: rgba(75, 190, 120, 0.10) !important;
-    }
-
-    .glow-orb-2 {
-      background: rgba(32, 180, 120, 0.08) !important;
-    }
-
-    .glow-orb-3 {
-      background: rgba(120, 210, 150, 0.06) !important;
-    }
-
-    .login-container {
-      max-width: 680px !important;
-    }
-
-    .ai-card {
-      background: rgba(255, 255, 255, 0.96) !important;
-      backdrop-filter: blur(20px) !important;
-      -webkit-backdrop-filter: blur(20px) !important;
-      border: 1px solid #dceee3 !important;
-      border-radius: 28px !important;
-      box-shadow: 0 20px 60px rgba(35, 91, 61, 0.10), 0 2px 10px rgba(35, 91, 61, 0.05) !important;
-    }
-
-    .ai-card::before {
-      height: 3px !important;
-      background: linear-gradient(90deg, #20b486, #64c88b, #20b486) !important;
-      background-size: 200% 100% !important;
-    }
-
-    .ai-badge {
-      background: #eaf8ef !important;
-      border: 1px solid #ccebd7 !important;
-      color: #267149 !important;
-    }
-
-    .ai-badge .pulse-dot {
-      background: #20b76b !important;
-    }
-
-    .logo-container {
-      background: #ffffff !important;
-      border: 1px solid #dceee3 !important;
-      box-shadow: 0 10px 30px rgba(35, 91, 61, 0.10) !important;
-    }
-
-    .logo-container::after {
-      background: linear-gradient(135deg, rgba(32,180,134,.25), rgba(100,200,139,.15)) !important;
-    }
-
-    .logo-container img {
-      filter: none !important;
-    }
-
-    .brand-title-ai {
-      background: none !important;
-      -webkit-background-clip: initial !important;
-      background-clip: initial !important;
-      color: #245b40 !important;
-    }
-
-    .brand-sub {
-      color: #668071 !important;
-    }
-
-    .brand-sub span {
-      color: #20a96f !important;
-    }
-
-    .role-grid {
-      gap: 14px !important;
-    }
-
-    .role-btn {
-      background: #ffffff !important;
-      border: 1px solid #dceee3 !important;
-      color: #28573f !important;
-      border-radius: 16px !important;
-      box-shadow: 0 4px 14px rgba(35, 91, 61, 0.05) !important;
-    }
-
-    .role-btn:hover {
-      background: #f5fbf7 !important;
-      border-color: #8fd3ad !important;
-      color: #1f6040 !important;
-      transform: translateY(-2px) !important;
-      box-shadow: 0 10px 25px rgba(35, 91, 61, 0.10) !important;
-    }
-
-    .role-btn .icon-box.admin,
-    .role-btn .icon-box.agent,
-    .role-btn .icon-box.clock {
-      background: #e8f7ee !important;
-      color: #168052 !important;
-    }
-
-    .role-btn:active {
-      transform: scale(.98) !important;
-    }
-
-  </style>
+</style>
 </head>
+
 <body>
 
-<!-- Background -->
-<div class="bg-particles"></div>
-<div class="glow-orb glow-orb-1"></div>
-<div class="glow-orb glow-orb-2"></div>
-<div class="glow-orb glow-orb-3"></div>
+<div class="hnc-page">
 
-<!-- AI Assistant Floating Button -->
-<button class="ai-assistant" onclick="alert('🤖 AI Assistant: How can I help you today?')">
-  <i class="bi bi-robot"></i>
-  <span class="tooltip-bubble">🤖 AI Assistant</span>
-</button>
+    <!-- =====================================================
+         TOP BAR
+         ===================================================== -->
 
-<div class="login-container">
-  <div class="ai-card">
+    <header class="hnc-topbar">
 
-    <!-- AI Badge -->
-    <div class="ai-badge">
-      <span class="pulse-dot"></span>
-      AI Powered · v2.0
+        <div class="hnc-brand">
+
+            <img
+                src="logoHNC.png"
+                alt="HNC Connect"
+                class="hnc-brand-logo"
+            >
+
+            <span class="hnc-brand-divider"></span>
+
+            <span class="hnc-brand-text">
+                Intelligent Communication Platform
+            </span>
+
+        </div>
+
+        <div class="hnc-status">
+            <span class="hnc-status-dot"></span>
+            System Online
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN
+         ===================================================== -->
+
+    <main class="hnc-main">
+
+        <!-- LEFT -->
+
+        <section class="hnc-hero">
+
+            <div class="hnc-ai-label">
+                <span class="hnc-ai-dot"></span>
+                AI Powered Platform
+            </div>
+
+            <img
+                src="logoHNC.png"
+                alt="HNC Connect"
+                class="hnc-hero-logo"
+            >
+
+            <h1>
+                Connect.
+                <span>Communicate.</span>
+            </h1>
+
+            <p class="hnc-hero-description">
+                Welcome to <strong>HNC Connect</strong> —
+                your intelligent communication and contact-center
+                workspace designed for faster, smarter operations.
+            </p>
+
+            <div class="hnc-feature-row">
+
+                <span class="hnc-feature">
+                    AI Assisted
+                </span>
+
+                <span class="hnc-feature">
+                    Secure Access
+                </span>
+
+                <span class="hnc-feature">
+                    Smart Operations
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- RIGHT -->
+
+        <section class="hnc-access">
+
+            <div class="hnc-access-inner">
+
+                <div class="hnc-access-heading">
+
+                    <div class="hnc-access-title">
+
+                        <h2>
+                            Choose your workspace
+                        </h2>
+
+                        <p>
+                            Select an option to continue
+                        </p>
+
+                    </div>
+
+                    <div class="hnc-access-badge">
+                        HNC CONNECT
+                    </div>
+
+                </div>
+
+
+                <div class="hnc-roles">
+
+                    <!-- ADMIN -->
+
+                    <button
+                        type="button"
+                        class="hnc-role"
+                        onclick="window.location.href='../admin/admin.php'"
+                    >
+
+                        <span class="hnc-role-icon">
+                            ✓
+                        </span>
+
+                        <span class="hnc-role-content">
+
+                            <span class="hnc-role-title">
+                                Administration
+                            </span>
+
+                            <span class="hnc-role-description">
+                                Manage users, campaigns, systems and platform settings
+                            </span>
+
+                        </span>
+
+                        <span class="hnc-role-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <!-- AGENT -->
+
+                    <button
+                        type="button"
+                        class="hnc-role"
+                        onclick="window.location.href='../agent/index.php'"
+                    >
+
+                        <span class="hnc-role-icon">
+                            ◉
+                        </span>
+
+                        <span class="hnc-role-content">
+
+                            <span class="hnc-role-title">
+                                Agent Workspace
+                            </span>
+
+                            <span class="hnc-role-description">
+                                Access your customer, calling and communication workspace
+                            </span>
+
+                        </span>
+
+                        <span class="hnc-role-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <!-- TIME CLOCK -->
+
+                    <button
+                        type="button"
+                        class="hnc-role"
+                        onclick="window.location.href='../agent/timeclock.php'"
+                    >
+
+                        <span class="hnc-role-icon">
+                            ◷
+                        </span>
+
+                        <span class="hnc-role-content">
+
+                            <span class="hnc-role-title">
+                                Time Clock
+                            </span>
+
+                            <span class="hnc-role-description">
+                                Track attendance, shifts and working hours
+                            </span>
+
+                        </span>
+
+                        <span class="hnc-role-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+                </div>
+
+
+                <div class="hnc-info">
+
+                    <span class="hnc-info-icon">
+                        AI
+                    </span>
+
+                    <span>
+                        HNC AI services are being integrated into the platform.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <div class="hnc-footer">
+        <strong>© 2025 HN Connect</strong>
+        · Intelligent Communication Platform
     </div>
 
-    <!-- Brand -->
-    <div class="brand-section">
-      <div class="logo-container">
-        <img src="logoHNC.png" alt="HN Connect">
-      </div>
-      <div class="brand-title-ai">HN Connect</div>
-      <div class="brand-sub">
-        <span>✦</span> Seamless Communication. Smart Future. <span>✦</span>
-      </div>
-    </div>
 
-    <!-- Role Buttons -->
-    <div class="role-grid">
-      <button class="role-btn" onclick="window.location.href='../admin/admin.php'">
-        <span class="icon-box admin"><i class="bi bi-shield-fill-check"></i></span>
-        <span class="btn-label">
-          ADMIN
-          <small>Full system access &amp; control</small>
-        </span>
-        <span class="arrow-icon"><i class="bi bi-chevron-right"></i></span>
-      </button>
+    <!-- =====================================================
+         AI BUTTON
+         ===================================================== -->
 
-      <button class="role-btn" onclick="window.location.href='../agent/index.php'">
-        <span class="icon-box agent"><i class="bi bi-person-badge"></i></span>
-        <span class="btn-label">
-          AGENT
-          <small>Manage tickets &amp; clients</small>
-        </span>
-        <span class="arrow-icon"><i class="bi bi-chevron-right"></i></span>
-      </button>
+    <button
+        type="button"
+        class="hnc-ai-button"
+        aria-label="HNC AI Assistant"
+        onclick="alert('HNC AI Assistant is coming soon.')"
+    >
+        AI
+    </button>
 
-      <button class="role-btn" onclick="window.location.href='../agent/timeclock.php'">
-        <span class="icon-box clock"><i class="bi bi-clock-history"></i></span>
-        <span class="btn-label">
-          TIME CLOCK
-          <small>Track attendance &amp; hours</small>
-        </span>
-        <span class="arrow-icon"><i class="bi bi-chevron-right"></i></span>
-      </button>
-    </div>
-
-    <!-- AI Divider -->
-    <div class="ai-divider">
-      <span class="line"></span>
-      <span class="ai-text"><span class="sparkle">✦</span> AI Connect <span class="sparkle">✦</span></span>
-      <span class="line"></span>
-    </div>
-
-    <!-- Connect Section -->
-    <div class="connect-section">
-      <a href="https://wa.me/919999999999" target="_blank" class="wa-link">
-        <img src="WhatsApp.svg" alt="WhatsApp">
-        Chat with us
-      </a>
-      <span class="contact-chip">
-        <i class="bi bi-envelope"></i> info@harapnilai.com
-      </span>
-    </div>
-
-    <!-- Footer -->
-    <div class="footer-ai">
-      <strong>© 2025 HN Connect</strong> · All Rights Reserved.<br>
-      <a href="tel:+60104031983" class="phone-link">
-        <i class="bi bi-telephone"></i> +6010-403-1983
-      </a>
-    </div>
-
-  </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
