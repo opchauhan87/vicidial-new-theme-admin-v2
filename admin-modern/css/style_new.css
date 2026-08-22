@@ -803,3 +803,257 @@ body {
 
 }
 
+
+/* =========================================================
+   HNC ADMIN V2 - HEADER + SIDEBAR REFINEMENT
+   Existing VICIdial markup preserved
+   ========================================================= */
+
+/* ---------- TOP HEADER ---------- */
+
+.modern-legacy-header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000 !important;
+
+    background: #ffffff !important;
+
+    border-bottom: 1px solid #d9ebe0 !important;
+
+    box-shadow:
+        0 3px 16px rgba(18, 80, 54, .07) !important;
+}
+
+#head-nav {
+    background: #ffffff !important;
+
+    border: 0 !important;
+
+    min-height: 58px !important;
+}
+
+#head-nav .navbar-collapse {
+    border: 0 !important;
+}
+
+#head-nav .navbar-nav > li > a {
+    color: #315b48 !important;
+
+    font-size: 12px !important;
+    font-weight: 600 !important;
+
+    padding: 19px 12px !important;
+
+    transition:
+        background .15s ease,
+        color .15s ease !important;
+}
+
+#head-nav .navbar-nav > li > a:hover {
+    color: #07553a !important;
+
+    background: #f0f8f3 !important;
+}
+
+/* Header icons */
+
+#head-nav .navbar-nav > li > a i,
+#head-nav .navbar-nav > li > a .fa {
+    color: #16845a !important;
+
+    font-size: 14px !important;
+
+    margin-right: 4px !important;
+}
+
+/* User area */
+
+#head-nav .user-nav > li > a {
+    color: #315b48 !important;
+}
+
+#head-nav .user-nav > li > a:hover {
+    background: #edf8f1 !important;
+}
+
+/* Time */
+
+.modern-legacy-header .header_time,
+.modern-legacy-header .time_header {
+    color: #71887b !important;
+
+    font-size: 11px !important;
+
+    font-weight: 500 !important;
+}
+
+/* ---------- SIDEBAR ---------- */
+
+.cl-sidebar {
+    background:
+        linear-gradient(
+            180deg,
+            #07553a 0%,
+            #086345 52%,
+            #0a704c 100%
+        ) !important;
+
+    border-right: 1px solid rgba(255,255,255,.08) !important;
+
+    box-shadow:
+        4px 0 18px rgba(10,75,50,.14) !important;
+}
+
+/* Sidebar brand */
+
+.sidebar-logo.modern-brand {
+    background: rgba(255,255,255,.04) !important;
+
+    border-bottom: 1px solid rgba(255,255,255,.10) !important;
+
+    padding: 14px 16px !important;
+}
+
+/* Main menu */
+
+.cl-sidebar .cl-vnavigation {
+    padding-top: 9px !important;
+}
+
+.cl-sidebar .cl-vnavigation > li {
+    margin: 2px 7px !important;
+}
+
+.cl-sidebar .cl-vnavigation > li > a {
+    color: #e8f6ed !important;
+
+    background: transparent !important;
+
+    border-radius: 9px !important;
+
+    margin: 0 !important;
+
+    padding: 10px 12px !important;
+
+    font-size: 12.5px !important;
+
+    font-weight: 500 !important;
+
+    transition:
+        background .15s ease,
+        color .15s ease,
+        transform .15s ease !important;
+}
+
+.cl-sidebar .cl-vnavigation > li > a:hover {
+    color: #ffffff !important;
+
+    background: rgba(255,255,255,.10) !important;
+
+    transform: translateX(2px) !important;
+}
+
+/* Active menu */
+
+.cl-sidebar .cl-vnavigation > li.active > a,
+.cl-sidebar .cl-vnavigation > li.open > a {
+    color: #ffffff !important;
+
+    background:
+        linear-gradient(
+            90deg,
+            #78be35 0%,
+            #4e9f45 100%
+        ) !important;
+
+    box-shadow:
+        0 5px 13px rgba(0,0,0,.13) !important;
+
+    font-weight: 700 !important;
+}
+
+/* Icons */
+
+.cl-sidebar .cl-vnavigation > li > a i,
+.cl-sidebar .cl-vnavigation > li > a .fa {
+    width: 22px !important;
+
+    margin-right: 6px !important;
+
+    color: #a8d995 !important;
+
+    font-size: 14px !important;
+
+    text-align: center !important;
+}
+
+.cl-sidebar .cl-vnavigation > li.active > a i,
+.cl-sidebar .cl-vnavigation > li.active > a .fa,
+.cl-sidebar .cl-vnavigation > li.open > a i,
+.cl-sidebar .cl-vnavigation > li.open > a .fa {
+    color: #ffffff !important;
+}
+
+/* Submenu */
+
+.cl-sidebar .cl-vnavigation ul {
+    background: rgba(0,0,0,.10) !important;
+
+    border-radius: 8px !important;
+
+    margin: 3px 5px 5px !important;
+
+    padding: 4px 0 !important;
+}
+
+.cl-sidebar .cl-vnavigation ul li a {
+    color: #cfe8d8 !important;
+
+    font-size: 11.5px !important;
+
+    padding: 8px 12px 8px 38px !important;
+
+    border-radius: 6px !important;
+}
+
+.cl-sidebar .cl-vnavigation ul li a:hover {
+    color: #ffffff !important;
+
+    background: rgba(255,255,255,.08) !important;
+}
+
+/* ---------- ADMINISTRATION WORKSPACE ---------- */
+
+.cl-mcont {
+    padding-top: 15px !important;
+}
+
+.cl-mcont .header {
+    border-radius: 13px !important;
+}
+
+.cl-mcont .header .title,
+.cl-mcont .header h3 {
+    color: #07553a !important;
+
+    font-weight: 700 !important;
+}
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 767px) {
+
+    #head-nav {
+        min-height: 52px !important;
+    }
+
+    #head-nav .navbar-nav > li > a {
+        padding: 13px 10px !important;
+    }
+
+    .cl-sidebar .cl-vnavigation > li > a {
+        padding: 10px 11px !important;
+    }
+
+}
+
