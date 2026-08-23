@@ -2,6 +2,8 @@
 <link href="css/style_new.css" rel="stylesheet" />
 <link href="admin-modern.css" rel="stylesheet" />
 <link href="vicidial-modern-sprint1.css?v=4.8" rel="stylesheet" />
+<link href="css/system-summary-modern.css?v=1.0" rel="stylesheet" />
+<link href="css/report-phase2-modern.css?v=1.1" rel="stylesheet" />
 <link href="js/bootstrap/dist/css/bootstrap.css" rel="stylesheet"/>
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 <link href='fonts/font-awesome-4.2.0/css/font-awesome.css' rel='stylesheet'/>

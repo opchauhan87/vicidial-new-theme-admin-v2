@@ -591,7 +591,7 @@ $HTML_head.="<div id='HelpDisplayDiv' class='help_info' style='display:none;'></
 $HTML_text.='<div id="pcont4" class="container-fluid">
 		<div class="cl-mcont">
         <div class="row">
-		<div class="col-md-12 no-padding"><div class="block-flat"><div class="header"> <h3 class="pull-left"> '._QXZ("$report_name")." $NWB#agent_performance_detail$NWE</h3><div class='pull-right'><a class=\"btn btn-info\" href=\"./admin.php?ADD=999999\">"._QXZ("BACK")."</a></div>
+		<div class="col-md-12 no-padding"><div class="block-flat"><div class="header"> <h3 class="pull-left"> '._QXZ("$report_name")." $NWB#agent_performance_detail$NWE</h3><div class='pull-right'><a class=\"btn btn-info\" href=\"./admin.php?ADD=999999\">"._QXZ("BACK")."</a></div></div>
 		<div class='col-md-12'><div class='content'>";
 
 //$HTML_text.="<TABLE CELLPADDING=3 CELLSPACING=0><TR><TD>";

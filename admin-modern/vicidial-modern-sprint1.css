@@ -14405,3 +14405,8 @@ table:not(.report_list) td {
     transition: opacity .18s ease, visibility .18s ease !important;
 }
 
+
+/* Phase 1C.20 - Hide floating communication tools on Agent Time Sheet */
+body.agent-time-sheet-page .modern-right-tools {
+    display: none !important;
+}

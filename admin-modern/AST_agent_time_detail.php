@@ -1,6 +1,7 @@
 <link href="css/style.css" rel="stylesheet" />
 <link href="css/style_new.css" rel="stylesheet" />
 <link href="js/bootstrap/dist/css/bootstrap.css" rel="stylesheet"/>
+<link href="css/agent-time-detail-modern.css?v=4.0" rel="stylesheet"/>
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 <link href='fonts/font-awesome-4.2.0/css/font-awesome.css' rel='stylesheet'/>
 <link rel='shortcut icon' href='favicon.ico' type='image/x-icon'/>
@@ -585,10 +586,11 @@ if ($file_download < 1)
 	require("admin_header.php");
 
 	//require("admin_header.php");
-	echo '<div id="pcont4" class="container-fluid server-state">
+		echo "</span>\n";
+	echo '<div id="pcont4" class="container-fluid">
 		<div class="cl-mcont">
         <div class="row">
-		<div class="col-md-12 no-padding"><div class="block-flat"><div class="header"> <h3 class="pull-left"> '._QXZ("$report_name")." $NWB#agent_time_detail$NWE</h3> <div class='pull-right'><a class=\"btn btn-info\" href=\"./admin.php?ADD=999999\">"._QXZ("BACK")."</a></div>
+		<div class="col-md-12 no-padding"><div class="block-flat"><div class="header"> <h3 class="pull-left"> '._QXZ("$report_name")." $NWB#agent_time_detail$NWE</h3> <div class='pull-right'><a class=\"btn btn-info\" href=\"./admin.php?ADD=999999\">"._QXZ("BACK")."</a></div></div>
 		<div class='col-md-12'><div class='content'>";
 	echo "</span>\n";
 	echo "<span style=\"\" id=agent_status_stats>\n";
@@ -1683,6 +1685,10 @@ $JS_onload.="}\n";
 if ($report_display_type=='HTML') {$JS_text.=$JS_onload;}
 $JS_text.="</script>\n";
 
+//echo "<FORM ACTION=\"$PHP_SELF\" METHOD=GET name=vicidial_report id=vicidial_report>";
+
+
+echo "<div class='agent-time-detail-modern'>";
 echo "<FORM ACTION=\"$PHP_SELF\" METHOD=GET name=vicidial_report id=vicidial_report>";
 echo "<TABLE CELLSPACING=3 BGCOLOR=\"#".$SSframe_background."\"><TR><TD class=\"col-md-4\" VALIGN=TOP> <BR>";
 echo "<INPUT TYPE=hidden NAME=DB VALUE=\"$DB\">\n";
@@ -1786,6 +1792,7 @@ echo " <a class=\"btn btn-bdr-blue\" href=\"$LINKbase&stage=$stage&file_download
 echo "</div></TD></TR></TABLE>";
 
 echo "</FORM>";
+echo "</div>";
 ############################################################################
 ##### END HTML form section
 ############################################################################

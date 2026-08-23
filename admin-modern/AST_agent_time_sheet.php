@@ -391,6 +391,7 @@ $HEADER.="-->\n";
 $HEADER.=" </STYLE>\n";
 $HEADER.="<script language=\"JavaScript\" src=\"calendar_db.js\"></script>\n";
 $HEADER.="<link rel=\"stylesheet\" href=\"calendar.css\">\n";
+$HEADER.="<link rel=\"stylesheet\" href=\"css/agent-time-detail-modern.css?v=5.1\">\n";
 $HEADER.="<META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=utf-8\">\n";
 $HEADER.="<TITLE>"._QXZ("$report_name");
 
@@ -421,97 +422,68 @@ $MAIN.='<div id="pcont4" class="container-fluid">
         <div class="row">
 		<div class="col-md-12 "><div class="block-flat"><div class="header"> <h3> ';
 
-$MAIN.=_QXZ("Agent Time Sheet for").": <B>$user</B></h3>\n";
+$MAIN.=_QXZ("Agent Time Sheet for").": <B>$user</B></h3></div><div class='col-md-12'><div class='content'>";
 //~ $MAIN.="<BR>\n";
-$MAIN.="<FORM ACTION=\"$PHP_SELF\" METHOD=GET name='vicidial_report'> &nbsp; &nbsp; \n";
-$MAIN.="<table border='0' width='350' cellpadding='3' cellspacing='0'>";
-//~ $MAIN.="<tr><td align='right'>"._QXZ("Date").":</td>";
-//~ $MAIN.="<td align='left'><div class='col-lg-5'><INPUT class='form-control' TYPE=TEXT NAME=query_date SIZE=10 MAXLENGTH=10 VALUE=\"$query_date\"></div>";
-	//~ $MAIN.="<script language=\"JavaScript\">\n";
-	//~ $MAIN.="function openNewWindow(url)\n";
-	//~ $MAIN.="  {\n";
-	//~ $MAIN.="  window.open (url,\"\",'width=620,height=300,scrollbars=yes,menubar=yes,address=yes');\n";
-	//~ $MAIN.="  }\n";
-	//~ $MAIN.="var o_cal = new tcal ({\n";
-	//~ $MAIN.="	// form name\n";
-	//~ $MAIN.="	'formname': 'vicidial_report',\n";
-	//~ $MAIN.="	// input name\n";
-	//~ $MAIN.="	'controlname': 'query_date'\n";
-	//~ $MAIN.="});\n";
-	//~ $MAIN.="o_cal.a_tpl.yearscroll = false;\n";
-	//~ $MAIN.="// o_cal.a_tpl.weekstart = 1; // Monday week start\n";
-	//~ $MAIN.="</script>\n";
-//~ $MAIN.="</td>\n";
-//~ $MAIN.="<td align='right'>"._QXZ("To").":</td>";
-//~ $MAIN.="<td align='left'><div class='col-lg-5'><INPUT class='form-control' TYPE=TEXT NAME=end_date SIZE=10 MAXLENGTH=10 VALUE=\"$end_date\"></div>";
-	//~ $MAIN.="<script language=\"JavaScript\">\n";
-	//~ $MAIN.="function openNewWindow(url)\n";
-	//~ $MAIN.="  {\n";
-	//~ $MAIN.="  window.open (url,\"\",'width=620,height=300,scrollbars=yes,menubar=yes,address=yes');\n";
-	//~ $MAIN.="  }\n";
-	//~ $MAIN.="var o_cal = new tcal ({\n";
-	//~ $MAIN.="	// form name\n";
-	//~ $MAIN.="	'formname': 'vicidial_report',\n";
-	//~ $MAIN.="	// input name\n";
-	//~ $MAIN.="	'controlname': 'end_date'\n";
-	//~ $MAIN.="});\n";
-	//~ $MAIN.="o_cal.a_tpl.yearscroll = false;\n";
-	//~ $MAIN.="// o_cal.a_tpl.weekstart = 1; // Monday week start\n";
-	//~ $MAIN.="</script>\n";
-//~ $MAIN.="</td></tr>";
+$MAIN.="<FORM ACTION=\"$PHP_SELF\" METHOD=GET name='vicidial_report' class='agent-time-sheet-form'>\n";
+$MAIN.="<div class='row'>\n";
 
-$MAIN.="<div class='col-md-4'><div class='col-md-12'><div class='col-md-10'><div class='form-group custom-input mb-10'><input class='form-control' type=text name=query_date value=\"$query_date\" size=10 maxsize=10><label>"._QXZ("Date").":</label></div>";
-$MAIN.="</div><div class='col-md-2 p-18'>";
-$MAIN.="<script language=\"JavaScript\">\n";
-$MAIN.="var o_cal = new tcal ({\n";
-$MAIN.="	// form name\n";
-$MAIN.="	'formname': 'vicidial_report',\n";
-$MAIN.="	// input name\n";
-$MAIN.="	'controlname': 'query_date'\n";
-$MAIN.="});\n";
-$MAIN.="o_cal.a_tpl.yearscroll = false;\n";
-$MAIN.="// o_cal.a_tpl.weekstart = 1; // Monday week start\n";
-$MAIN.="</script></div></div>\n";
-
-$MAIN.="<div class='col-md-12 text-center'><label>"._QXZ("to")."</label> </div> ";
-$MAIN.="<div class='col-md-12'><div class='col-md-10'><div class='form-group custom-input mb-10'><input class=\"form-control\" type=text name=end_date value=\"$end_date\" size=20 maxsize=20></div>";
-$MAIN.="</div><div class='col-md-2 p-18'>";
-$MAIN.="<script language=\"JavaScript\">\n";
-$MAIN.="var o_cal = new tcal ({\n";
-$MAIN.="	// form name\n";
-$MAIN.="	'formname': 'vicidial_report',\n";
-$MAIN.="	// input name\n";
-$MAIN.="	'controlname': 'end_date'\n";
-$MAIN.="});\n";
-$MAIN.="o_cal.a_tpl.yearscroll = false;\n";
-$MAIN.="// o_cal.a_tpl.weekstart = 1; // Monday week start\n";
-$MAIN.="</script></div></div></div></div>\n";
-
-$MAIN.="<div class='col-md-4'><div class='form-group custom-input mb-10 '> <INPUT TYPE=TEXT NAME=agent SIZE=10 class='form-control' MAXLENGTH=20 VALUE=\"$agent\"><label>"._QXZ("User ID").":</label></div>";
-
-
-$HTML_text.="<script language=\"JavaScript\">\n";
-$HTML_text.="function openNewWindow(url)\n";
-$HTML_text.="  {\n";
-$HTML_text.="  window.open (url,\"\",'width=620,height=300,scrollbars=yes,menubar=yes,address=yes');\n";
-$HTML_text.="  }\n";
-$HTML_text.="var o_cal = new tcal ({\n";
-$HTML_text.="	// form name\n";
-$HTML_text.="	'formname': 'vicidial_report',\n";
-$HTML_text.="	// input name\n";
-$HTML_text.="	'controlname': 'end_date'\n";
-$HTML_text.="});\n";
-$HTML_text.="o_cal.a_tpl.yearscroll = false;\n";
-$HTML_text.="// o_cal.a_tpl.weekstart = 1; // Monday week start\n";
-$HTML_text.="</script>\n";
-if ($archives_available=="Y") 
-	{
-	$MAIN.="<div class=\"text-left\"><input type='checkbox' name='search_archived_data' value='checked' $search_archived_data><label>"._QXZ("&nbsp;Search archived data")."</label></div>";
-	}
+/* DATE RANGE */
+$MAIN.="<div class='col-md-4'>\n";
+$MAIN.="<div class='form-group custom-input mb-10'>";
+$MAIN.="<input class='form-control' type='text' name='query_date' value=\"$query_date\" size='10' maxlength='10'>";
+$MAIN.="<label>"._QXZ("Date").":</label>";
 $MAIN.="</div>";
-$MAIN.="<div class=\"col-md-12 text-center mb-10\"><INPUT TYPE=SUBMIT NAME=SUBMIT VALUE='"._QXZ("SUBMIT")."' class='btn btn-success'></div>\n";
-$MAIN.="</table>";
 
+$MAIN.="<script language=\"JavaScript\">\n";
+$MAIN.="var o_cal = new tcal ({\n";
+$MAIN.=" 'formname': 'vicidial_report',\n";
+$MAIN.=" 'controlname': 'query_date'\n";
+$MAIN.="});\n";
+$MAIN.="o_cal.a_tpl.yearscroll = false;\n";
+$MAIN.="</script>\n";
+
+$MAIN.="<div class='text-center agent-time-to-label'>"._QXZ("to")."</div>\n";
+
+$MAIN.="<div class='form-group custom-input mb-10'>";
+$MAIN.="<input class='form-control' type='text' name='end_date' value=\"$end_date\" size='10' maxlength='10'>";
+$MAIN.="<label>"._QXZ("Date").":</label>";
+$MAIN.="</div>";
+
+$MAIN.="<script language=\"JavaScript\">\n";
+$MAIN.="var o_cal2 = new tcal ({\n";
+$MAIN.=" 'formname': 'vicidial_report',\n";
+$MAIN.=" 'controlname': 'end_date'\n";
+$MAIN.="});\n";
+$MAIN.="o_cal2.a_tpl.yearscroll = false;\n";
+$MAIN.="</script>\n";
+
+$MAIN.="</div>\n";
+
+/* USER ID */
+$MAIN.="<div class='col-md-4'>\n";
+$MAIN.="<div class='form-group custom-input mb-10'>";
+$MAIN.="<input type='text' name='agent' value=\"$agent\" size='10' maxlength='20' class='form-control'>";
+$MAIN.="<label>"._QXZ("User ID").":</label>";
+$MAIN.="</div>\n";
+
+if ($archives_available=="Y")
+    {
+    $MAIN.="<div class='form-group agent-time-archive'>";
+    $MAIN.="<label class='checkbox-inline'>";
+    $MAIN.="<input type='checkbox' name='search_archived_data' value='checked' $search_archived_data>";
+    $MAIN.=_QXZ("Search archived data");
+    $MAIN.="</label>";
+    $MAIN.="</div>";
+    }
+
+$MAIN.="</div>\n";
+
+/* SUBMIT */
+$MAIN.="<div class='col-md-4 agent-time-submit-col'>\n";
+$MAIN.="<INPUT TYPE=SUBMIT NAME=SUBMIT VALUE='"._QXZ("SUBMIT")."' class='btn btn-success'>\n";
+$MAIN.="</div>\n";
+
+$MAIN.="</div>\n";
 $MAIN.="</FORM>\n\n";
 $MAIN.="</div>";
 //$MAIN.="<div class=\"col-md-12 text-center mb-10\"><INPUT TYPE=SUBMIT NAME=SUBMIT VALUE='"._QXZ("SUBMIT")."' class='btn btn-success'></div>\n";
@@ -743,7 +715,6 @@ $MAIN.="</td>";
 $MAIN.="</tr>";
 
 $MAIN.="</TABLE><BR>$db_source\n";
-$MAIN.="</BODY></HTML>\n";
 }
 	if ($file_download>0) {
 		$FILE_TIME = date("Ymd-His");
@@ -768,8 +739,123 @@ $MAIN.="</BODY></HTML>\n";
 
 	} else {
 		header ("Content-type: text/html; charset=utf-8");
-		echo $HEADER;
+                echo "<span style=\"\" id=admin_header>";
 		require("admin_header.php");
+
+echo "<style>
+/* AST Agent Time Sheet - final light theme */
+
+.agent-time-sheet-form {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 18px 28px !important;
+    background: #ffffff !important;
+    border-radius: 0 0 14px 14px !important;
+}
+
+.agent-time-sheet-form .row {
+    display: flex !important;
+    width: 100% !important;
+    margin: 0 !important;
+    align-items: flex-start !important;
+}
+
+.agent-time-sheet-form .col-md-4 {
+    float: none !important;
+    width: 33.333333% !important;
+    padding: 8px 16px !important;
+    box-sizing: border-box !important;
+}
+
+.agent-time-sheet-form .form-group {
+    margin-bottom: 18px !important;
+}
+
+.agent-time-sheet-form .form-control {
+    width: 100% !important;
+    height: 42px !important;
+    background: #ffffff !important;
+    color: #315f49 !important;
+    border: 1px solid #cfe3d7 !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+}
+
+.agent-time-sheet-form .form-control:focus {
+    background: #ffffff !important;
+    color: #315f49 !important;
+    border-color: #2db58c !important;
+    box-shadow: 0 0 0 2px rgba(45,181,140,.12) !important;
+}
+
+.agent-time-sheet-form .custom-input label,
+.agent-time-sheet-form label {
+    color: #315f49 !important;
+    background: #ffffff !important;
+    font-weight: 600 !important;
+}
+
+.agent-time-to-label {
+    color: #688071 !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+    padding: 0 0 8px !important;
+}
+
+.agent-time-archive {
+    margin-top: 8px !important;
+}
+
+.agent-time-archive label {
+    color: #587565 !important;
+    background: transparent !important;
+}
+
+.agent-time-submit-col {
+    padding-top: 8px !important;
+}
+
+.agent-time-submit-col .btn {
+    background: #2eaf7d !important;
+    border: 1px solid #2eaf7d !important;
+    color: #ffffff !important;
+    border-radius: 7px !important;
+    padding: 10px 28px !important;
+    font-weight: 600 !important;
+}
+
+/* Report tabs / context navigation */
+.modern-admin-nav-shell .modern-context-bar,
+.modern-admin-nav-shell .modern-context-nav,
+.modern-admin-nav-shell .modern-report-nav,
+.modern-admin-nav-shell .modern-tabs {
+    background: #ffffff !important;
+    color: #315f49 !important;
+}
+
+.modern-admin-nav-shell a {
+    color: #315f49 !important;
+}
+
+.modern-admin-nav-shell a:hover {
+    color: #159b70 !important;
+}
+
+/* Do not allow global dark report backgrounds */
+#cl-wrapper.vicidial-modern-enabled .agent-time-sheet-form,
+#cl-wrapper.vicidial-modern-enabled .agent-time-sheet-form * {
+    box-sizing: border-box;
+}
+</style>";
+
+                echo "<style>
+.modern-right-tools,
+.hnc-ai-chat,
+.whatsapp-tool,
+.ai-chat-tool { display:none !important; visibility:hidden !important; width:0 !important; height:0 !important; overflow:hidden !important; }
+.modern-right-tools *,
+.hnc-ai-chat * { display:none !important; }
+</style>";
 		echo $MAIN;
 	}
 
