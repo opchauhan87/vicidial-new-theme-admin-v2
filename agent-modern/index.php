@@ -26524,6 +26524,17 @@ document.getElementById("ViewCommentsBox").style.width = cust_width;
 */
 </style>
 <?php
+$agent_ai_identity = array(
+    "agent_id"     => $VD_login,
+    "campaign"     => $VD_campaign,
+    "session_name" => $session_name
+);
+
+echo "<script>window.AgentAIIdentity = " .
+    json_encode($agent_ai_identity, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) .
+    ";</script>\n";
+
+echo "<script src=\"ai/agent_context_bridge.js\"></script>\n";
 echo "</head>\n";
 
 $zi=2;
