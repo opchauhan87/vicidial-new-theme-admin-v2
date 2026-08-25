@@ -26535,6 +26535,7 @@ echo "<script>window.AgentAIIdentity = " .
     ";</script>\n";
 
 echo "<script src=\"ai/agent_context_bridge.js\"></script>\n";
+echo "<script src=\"ai/agent_ai_ui.js\"></script>\n";
 echo "</head>\n";
 
 $zi=2;
