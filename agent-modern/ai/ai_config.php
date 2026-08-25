@@ -9,7 +9,7 @@
  */
 
 if (!defined('AGENT_AI_ENABLED')) {
-    define('AGENT_AI_ENABLED', false);
+    define('AGENT_AI_ENABLED', true);
 }
 
 if (!defined('AGENT_AI_DEBUG')) {
@@ -20,7 +20,7 @@ if (!defined('AGENT_AI_DEBUG')) {
  * AI provider endpoint will be added in a later phase.
  */
 if (!defined('AGENT_AI_PROVIDER')) {
-    define('AGENT_AI_PROVIDER', 'none');
+    define('AGENT_AI_PROVIDER', 'ollama');
 }
 
 if (!defined('AGENT_AI_TIMEOUT')) {
