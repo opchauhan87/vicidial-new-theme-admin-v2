@@ -31,6 +31,16 @@
         return String(element.value || '').trim();
     }
 
+    function textById(id) {
+        var element = document.getElementById(id);
+
+        if (!element) {
+            return '';
+        }
+
+        return String(element.textContent || '').trim();
+    }
+
     window.AgentAIContextBridge = {
 
         getContext: function () {
@@ -47,16 +57,40 @@
                 /*
                  * Live VICIdial lead/call fields.
                  */
-                lead_id: valueById('lead_id'),
-                phone_number: valueById('phone_number'),
+                lead_id: (
+                    document.callcenter_form &&
+                    document.callcenter_form.lead_id
+                ) ? String(document.callcenter_form.lead_id.value || '').trim() : '',
+
+                phone_number: (
+                    document.callcenter_form &&
+                    document.callcenter_form.phone_number
+                ) ? String(document.callcenter_form.phone_number.value || '').trim() : '',
+
+                vendor_lead_code: (
+                    document.callcenter_form &&
+                    document.callcenter_form.vendor_lead_code
+                ) ? String(document.callcenter_form.vendor_lead_code.value || '').trim() : '',
+
+                first_name: (
+                    document.callcenter_form &&
+                    document.callcenter_form.first_name
+                ) ? String(document.callcenter_form.first_name.value || '').trim() : '',
+
+                last_name: (
+                    document.callcenter_form &&
+                    document.callcenter_form.last_name
+                ) ? String(document.callcenter_form.last_name.value || '').trim() : '',
+
                 uniqueid: valueById('uniqueid'),
                 agent_log_id: valueById('agent_log_id'),
                 call_id: valueById('LasTCID'),
 
                 /*
                  * Current visible agent status.
+                 * AgentStatusStatus is a text span, not an input.
                  */
-                call_state: valueById('AgentStatusStatus'),
+                call_state: textById('AgentStatusStatus'),
 
                 timestamp: new Date().toISOString()
             };

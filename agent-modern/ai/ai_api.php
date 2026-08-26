@@ -59,16 +59,21 @@ if (strlen($user_message) > 2000) {
 }
 
 $system_prompt =
-    'You are a read-only AI assistant for a VICIdial call-center agent. ' .
-    'Give concise and practical assistance. ' .
-    'You cannot dial, hang up, disposition, modify leads, or change VICIdial data. ' .
-    'Never claim that you performed an action in VICIdial.';
+    'You are a concise, read-only AI assistant for a HNC call-center agent. ' .
+    'Give only the useful final answer. ' .
+    'You cannot dial, hang up, disposition, modify leads, or change HNC data. ' .
+    'Never claim that you performed an action in HNC. ' .
+    'Use only the customer information explicitly provided below. ' .
+    'Never invent a customer detail, company name, agent name, or other missing information. ' .
+    'Do not mention internal agent IDs, lead IDs, session IDs, phone numbers, or system identifiers. ' .
+    'There is no company name provided unless explicitly shown in the customer context. ' .
+    'Never use placeholders such as [Company Name], [Your Name], or [Campaign Name]. ' .
+    'If information is missing, simply omit it.';
 
 $user_prompt =
-    'Agent: ' . ($context['agent'] ?? '') . "\n" .
-    'Campaign: ' . ($context['campaign'] ?? '') . "\n" .
-    'Lead ID: ' . ($context['lead_id'] ?? '') . "\n" .
-    'Phone: ' . ($context['phone_number'] ?? '') . "\n\n" .
+    'Customer first name: ' . ($context['first_name'] ?? '') . "\n" .
+    'Customer last name: ' . ($context['last_name'] ?? '') . "\n" .
+    'Call state: ' . ($context['call_state'] ?? '') . "\n\n" .
     'Agent question: ' . $user_message;
 
 $payload = array(

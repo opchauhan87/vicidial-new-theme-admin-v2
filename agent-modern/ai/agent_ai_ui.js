@@ -147,9 +147,10 @@
 
         panel.style.cssText =
             'position:fixed;' +
-            'right:18px;' +
+            'right:205px;' +
             'bottom:70px;' +
             'width:340px;' +
+            'max-width:calc(100vw - 225px);' +
             'z-index:99990;' +
             'background:#ffffff;' +
             'border:1px solid #cfe3d7;' +
