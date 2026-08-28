@@ -361,36 +361,6 @@ def detect_customer_intent(transcript):
     ):
         return "already_paid"
 
-    # Payment delay / settlement.
-    #
-    # Check delayed-payment requests BEFORE normal payment intent.
-    payment_delay_words = (
-        "pay tomorrow",
-        "payment tomorrow",
-        "settle tomorrow",
-        "settle it tomorrow",
-        "settlement tomorrow",
-        "delay the payment",
-        "delay payment",
-        "delay my payment",
-        "defer the payment",
-        "defer payment",
-        "more time to pay",
-        "need more time",
-        "give me more time",
-        "can i pay later",
-        "can i settle later",
-        "pay later",
-        "settle later",
-        "payment later",
-        "payment delay",
-        "settlement arrangement",
-        "payment arrangement"
-    )
-
-    if any(phrase in text for phrase in payment_delay_words):
-        return "payment_delay"
-
     # Payment intent.
     payment_words = (
         "make a payment",
@@ -416,49 +386,6 @@ def detect_customer_intent(transcript):
 
     if any(phrase in text for phrase in callback_words):
         return "callback"
-
-    # Financial hardship.
-    #
-    # These statements indicate inability to pay because of
-    # financial circumstances rather than a simple refusal.
-    hardship_words = (
-        "i don't have the money",
-        "i do not have the money",
-        "don't have money",
-        "do not have money",
-        "no money",
-        "not enough money",
-        "can't afford",
-        "cannot afford",
-        "can't pay",
-        "cannot pay",
-        "unable to pay",
-        "not able to pay",
-        "i cannot do this",
-        "i can't do this",
-        "financial difficulty",
-        "financial difficulties",
-        "financial problem",
-        "financial problems",
-        "hardship",
-        "lost my job",
-        "no income",
-        "low income"
-    )
-
-    if any(phrase in text for phrase in hardship_words):
-        return "financial_hardship"
-
-    # Common STT variations for financial hardship.
-    if (
-        ("don't" in text or "do not" in text or "cannot" in text or "can't" in text)
-        and (
-            "money" in text
-            or "afford" in text
-            or "pay" in text
-        )
-    ):
-        return "financial_hardship"
 
     # Refusal / unwillingness.
     refusal_words = (
@@ -1175,12 +1102,6 @@ def process_segment(
                 ),
                 "payment": (
                     "Certainly. I can help you with the payment process."
-                ),
-                "payment_delay": (
-                    "I understand. We can discuss a suitable payment date or arrangement."
-                ),
-                "financial_hardship": (
-                    "I understand. We can discuss your account and possible payment arrangements."
                 ),
                 "callback": (
                     "Certainly. I understand you'd like us to contact you later."
