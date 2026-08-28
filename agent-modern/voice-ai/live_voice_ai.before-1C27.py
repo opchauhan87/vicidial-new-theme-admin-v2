@@ -361,34 +361,6 @@ def detect_customer_intent(transcript):
     ):
         return "already_paid"
 
-    # Promise to pay / payment commitment.
-    #
-    # Detect explicit customer commitments to make payment.
-    # This is different from asking for permission to pay later.
-    promise_words = (
-        "i will pay",
-        "i'll pay",
-        "i will make the payment",
-        "i'll make the payment",
-        "i will make a payment",
-        "i'll make a payment",
-        "i can pay",
-        "i can make the payment",
-        "i can make a payment",
-        "i promise to pay",
-        "i promise i'll pay",
-        "i promise to make the payment",
-        "i will clear the amount",
-        "i'll clear the amount",
-        "i can clear the amount",
-        "i will settle the amount",
-        "i'll settle the amount",
-        "i can settle the amount"
-    )
-
-    if any(phrase in text for phrase in promise_words):
-        return "promise_to_pay"
-
     # Payment delay / settlement.
     #
     # Check delayed-payment requests BEFORE normal payment intent.
@@ -1203,9 +1175,6 @@ def process_segment(
                 ),
                 "payment": (
                     "Certainly. I can help you with the payment process."
-                ),
-                "promise_to_pay": (
-                    "Thank you. I understand your commitment to make the payment."
                 ),
                 "payment_delay": (
                     "I understand. We can discuss a suitable payment date or arrangement."
