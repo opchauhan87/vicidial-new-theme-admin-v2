@@ -502,42 +502,6 @@ def detect_customer_intent(transcript):
     if any(phrase in text for phrase in refusal_words):
         return "refusal"
 
-    # Customer confirmation / agreement.
-    #
-    # Keep this context-specific. Bare "yes", "okay", or "sure"
-    # are intentionally left as general so they can be handled
-    # by Ollama using the conversation context.
-    confirmation_words = (
-        "yes, i agree",
-        "yes i agree",
-        "yes, that's fine",
-        "yes that's fine",
-        "yes, that is fine",
-        "yes that is fine",
-        "okay, i agree",
-        "okay i agree",
-        "okay, that's fine",
-        "okay that's fine",
-        "okay, that is fine",
-        "okay that is fine",
-        "that's fine",
-        "that is fine",
-        "i agree",
-        "i understand",
-        "sure, that's okay",
-        "sure that's okay",
-        "sure, that is okay",
-        "sure that is okay",
-        "alright, i agree",
-        "alright i agree",
-        "alright, that's okay",
-        "alright that's okay",
-        "i will do that"
-    )
-
-    if any(phrase in text for phrase in confirmation_words):
-        return "confirmation"
-
     return "general"
 
 
@@ -1242,9 +1206,6 @@ def process_segment(
                 ),
                 "promise_to_pay": (
                     "Thank you. I understand your commitment to make the payment."
-                ),
-                "confirmation": (
-                    "Thank you. I understand."
                 ),
                 "payment_delay": (
                     "I understand. We can discuss a suitable payment date or arrangement."
