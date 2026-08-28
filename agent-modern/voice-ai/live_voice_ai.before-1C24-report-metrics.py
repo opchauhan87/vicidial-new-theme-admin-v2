@@ -598,7 +598,7 @@ def piper_tts(text):
         + " | piper "
         "-m "
         + json.dumps(PIPER_MODEL)
-        + " --length_scale 1.12 -f "
+        + " -f "
         + json.dumps(wav_path)
     )
 
@@ -721,8 +721,6 @@ def save_conversation_event(
     stt_time=0.0,
     ollama_time=0.0,
     piper_time=0.0,
-    playback_time=0.0,
-    total_processing_time=0.0,
     event_type="conversation"
 ):
     """
@@ -758,14 +756,6 @@ def save_conversation_event(
         ),
         "piper_time": round(
             float(piper_time or 0.0),
-            3
-        ),
-        "playback_time": round(
-            float(playback_time or 0.0),
-            3
-        ),
-        "total_processing_time": round(
-            float(total_processing_time or 0.0),
             3
         )
     }
@@ -1029,19 +1019,6 @@ def process_segment(
                     "Thank you for calling AI Demo. Goodbye."
                 )
 
-                goodbye_start = time.time()
-
-                play_tts_response(
-                    conn,
-                    goodbye_text,
-                    "GOODBYE"
-                )
-
-                goodbye_elapsed = (
-                    time.time()
-                    - goodbye_start
-                )
-
                 save_conversation_event(
                     call_uuid,
                     segment_number,
@@ -1053,9 +1030,13 @@ def process_segment(
                     stt_time,
                     0.0,
                     0.0,
-                    goodbye_elapsed,
-                    stt_time + goodbye_elapsed,
                     "goodbye"
+                )
+
+                play_tts_response(
+                    conn,
+                    goodbye_text,
+                    "GOODBYE"
                 )
 
             except (
@@ -1152,6 +1133,25 @@ def process_segment(
         print(
             "OLLAMA TIME: %.2fs"
             % ollama_time
+        )
+
+        # -------------------------------------------------
+        # Conversation report
+        # Save the final response that will actually be
+        # sent to Piper, including deterministic responses.
+        # -------------------------------------------------
+        save_conversation_event(
+            call_uuid,
+            segment_number,
+            phone_number,
+            customer,
+            transcript,
+            intent,
+            answer,
+            stt_time,
+            ollama_time,
+            0.0,
+            "conversation"
         )
 
         # -------------------------
@@ -1279,27 +1279,6 @@ def process_segment(
         print(
             "PROCESSING TIME: %.2fs"
             % total_processing
-        )
-
-        # -------------------------------------------------
-        # Conversation report
-        # Save only after Piper and playback have completed,
-        # so all performance metrics contain real values.
-        # -------------------------------------------------
-        save_conversation_event(
-            call_uuid,
-            segment_number,
-            phone_number,
-            customer,
-            transcript,
-            intent,
-            answer,
-            stt_time,
-            ollama_time,
-            piper_time,
-            playback_time,
-            total_processing,
-            "conversation"
         )
 
     finally:

@@ -598,7 +598,7 @@ def piper_tts(text):
         + " | piper "
         "-m "
         + json.dumps(PIPER_MODEL)
-        + " --length_scale 1.12 -f "
+        + " -f "
         + json.dumps(wav_path)
     )
 
