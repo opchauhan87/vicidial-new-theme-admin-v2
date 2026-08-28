@@ -846,55 +846,10 @@ def process_segment(
                 phone_number
             )
 
-            intent = detect_customer_intent(
-                transcript
+            answer, ollama_time = ask_ollama(
+                transcript,
+                customer
             )
-
-            deterministic_responses = {
-                "balance": (
-                    "Your outstanding balance is RM %s."
-                    % (
-                        customer.get("balance")
-                        or ""
-                    )
-                ),
-                "already_paid": (
-                    "I understand. Your payment needs to be verified before we update your account."
-                ),
-                "payment": (
-                    "Certainly. I can help you with the payment process."
-                ),
-                "callback": (
-                    "Certainly. I understand you'd like us to contact you later."
-                ),
-                "refusal": (
-                    "I understand. We can discuss your account when you're ready."
-                )
-            }
-
-            if intent in deterministic_responses:
-
-                answer = deterministic_responses[
-                    intent
-                ]
-
-                ollama_time = 0.0
-
-                print(
-                    "INTENT:",
-                    intent
-                )
-
-                print(
-                    "DETERMINISTIC RESPONSE: True"
-                )
-
-            else:
-
-                answer, ollama_time = ask_ollama(
-                    transcript,
-                    customer
-                )
 
         except Exception as e:
 
