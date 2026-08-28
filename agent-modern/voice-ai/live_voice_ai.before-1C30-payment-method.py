@@ -419,34 +419,6 @@ def detect_customer_intent(transcript):
     if any(phrase in text for phrase in payment_delay_words):
         return "payment_delay"
 
-    # Payment method / payment channel inquiry.
-    #
-    # Detect questions about how or where the customer can
-    # make a payment. Keep this separate from a direct
-    # intention to pay.
-    payment_method_words = (
-        "how can i pay",
-        "how do i pay",
-        "how do i make the payment",
-        "how can i make the payment",
-        "how do i make a payment",
-        "how can i make a payment",
-        "where can i pay",
-        "where can i make the payment",
-        "where can i make a payment",
-        "what payment options",
-        "what are the payment options",
-        "payment options do you have",
-        "can i pay online",
-        "can i pay by bank transfer",
-        "can i pay through bank transfer",
-        "how can i pay online",
-        "how can i pay by bank transfer"
-    )
-
-    if any(phrase in text for phrase in payment_method_words):
-        return "payment_method"
-
     # Payment intent.
     payment_words = (
         "make a payment",
@@ -1292,9 +1264,6 @@ def process_segment(
                 ),
                 "payment": (
                     "Certainly. I can help you with the payment process."
-                ),
-                "payment_method": (
-                    "Certainly. I can explain the available payment methods and how to make your payment."
                 ),
                 "promise_to_pay": (
                     "Thank you. I understand your commitment to make the payment."
