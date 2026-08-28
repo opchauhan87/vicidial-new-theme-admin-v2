@@ -439,35 +439,10 @@ def detect_customer_intent(transcript):
         "call me back",
         "contact me later",
         "phone me later",
-        "try again later",
-        "please call me later",
-        "please call me back",
-        "please call me tomorrow",
-        "call me tomorrow",
-        "can you call me tomorrow",
-        "call me next week",
-        "please call me next week",
-        "contact me tomorrow",
-        "please contact me tomorrow",
-        "contact me another time",
-        "please contact me another time",
-        "can you contact me later",
-        "can you call me later",
-        "try calling me tomorrow",
-        "try calling me later"
+        "try again later"
     )
 
     if any(phrase in text for phrase in callback_words):
-        return "callback"
-
-    # Busy + callback request.
-    if (
-        ("i'm busy right now" in text or "i am busy right now" in text)
-        and (
-            "call" in text
-            or "contact" in text
-        )
-    ):
         return "callback"
 
     # Financial hardship.
