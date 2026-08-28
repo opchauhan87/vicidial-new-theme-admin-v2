@@ -319,46 +319,16 @@ def detect_customer_intent(transcript):
         return "balance"
 
     # Already paid.
-    #
-    # Keep this intentionally specific so that a normal
-    # payment request such as "I want to pay" does not
-    # get classified as already_paid.
     paid_words = (
         "already paid",
-        "i already paid",
         "i paid",
-        "already cleared",
-        "i already cleared",
         "payment was made",
         "payment has been made",
-        "already made the payment",
-        "already made payment",
         "paid this",
-        "paid the amount",
-        "payment already made"
+        "paid the amount"
     )
 
     if any(phrase in text for phrase in paid_words):
-        return "already_paid"
-
-    # Common STT variations where the words are separated.
-    if (
-        "already" in text
-        and (
-            "paid" in text
-            or "cleared" in text
-        )
-    ):
-        return "already_paid"
-
-    if (
-        "payment" in text
-        and (
-            "was made" in text
-            or "has been made" in text
-            or "already made" in text
-        )
-    ):
         return "already_paid"
 
     # Payment intent.
